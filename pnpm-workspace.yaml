@@ -1,0 +1,7 @@
+# Single-package repo. pnpm 11+ reads build-script approvals from here.
+# esbuild and unrs-resolver ship prebuilt platform binaries; sharp is
+# bundled by Next for image optimization on Vercel.
+allowBuilds:
+  esbuild: false
+  sharp: false
+  unrs-resolver: false
