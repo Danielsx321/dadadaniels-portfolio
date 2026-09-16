@@ -44,12 +44,12 @@ export function SiteFooter() {
           <h2 className="font-sans text-sm font-semibold text-ink">Get in touch</h2>
           <ul className="mt-3 space-y-2">
             <li>
-              <a
-                href={`mailto:${site.email}`}
-                className="focus-ring rounded-card break-all text-ink-muted hover:text-ink"
+              <Link
+                href="/contact"
+                className="focus-ring rounded-card text-ink-muted hover:text-ink"
               >
-                {site.email}
-              </a>
+                Send a message or book a call
+              </Link>
             </li>
             {site.socials.map((s) => (
               <li key={s.href}>

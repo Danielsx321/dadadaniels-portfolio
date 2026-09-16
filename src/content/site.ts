@@ -3,7 +3,6 @@ export const site = {
   shortName: "Daniels",
   titles: ["WordPress Developer", "Full Stack Developer", "No-Code Developer"],
   location: "Lagos, Nigeria",
-  email: "danielsatemail@gmail.com",
   socials: [
     { label: "Instagram", href: "https://www.instagram.com/the.dadadaniels/" },
     { label: "X", href: "https://x.com/thedadadaniels" },
