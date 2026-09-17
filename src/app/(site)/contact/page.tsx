@@ -4,6 +4,7 @@ import { CalEmbed } from "@/components/contact/cal-embed";
 import { ContactForm } from "@/components/contact/contact-form";
 import { SectionHeading } from "@/components/sections/section-heading";
 import { process as steps } from "@/content/process";
+import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -14,6 +15,8 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   const calLink = process.env.NEXT_PUBLIC_CAL_LINK?.trim();
+  // Without a mail provider the form cannot deliver, so offer a route that works instead.
+  const formWorks = Boolean(process.env.RESEND_API_KEY?.trim() && process.env.CONTACT_TO_EMAIL?.trim());
 
   return (
     <div className="mx-auto max-w-site px-5 pt-36 pb-24">
@@ -22,12 +25,42 @@ export default function ContactPage() {
         eyebrow="Contact"
         title="Tell me what you"
         accent="need built"
-        intro="Send a message with a little detail, or book a call and we can talk it through."
+        intro={
+          formWorks
+            ? "Send a message with a little detail, or book a call and we can talk it through."
+            : "Send me a direct message with a little detail and we can talk it through."
+        }
       />
 
       <div className="mt-14 grid gap-6 lg:grid-cols-[1.05fr_1fr]">
         <div>
-          <ContactForm />
+          {formWorks ? (
+            <ContactForm />
+          ) : (
+            <div className="glass rounded-[22px] p-6 sm:p-8">
+              <h2 className="text-2xl font-semibold tracking-[-0.02em]">Message me on social</h2>
+              <p className="mt-3 text-muted">
+                The message form here is being set up. In the meantime the quickest way to reach me is a direct message.
+              </p>
+              <ul className="mt-6 grid gap-3 sm:grid-cols-3">
+                {site.socials.map((s) => (
+                  <li key={s.href}>
+                    <a
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block rounded-2xl border border-glass-line bg-white/4 px-4 py-3.5 text-center font-semibold hover:border-mint/40"
+                    >
+                      {s.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 text-sm text-subtle">
+                Hiring through Upwork? Send me the job link there and I will reply with a plan.
+              </p>
+            </div>
+          )}
           <ul className="mt-6 grid gap-3 sm:grid-cols-2">
             {steps.map((s, i) => (
               <li key={s.name} className="rounded-2xl border border-glass-line bg-white/3 p-4">
@@ -57,7 +90,8 @@ export default function ContactPage() {
             <div className="glass mt-4 rounded-[22px] p-6">
               <h2 className="text-lg font-semibold">Prefer a call?</h2>
               <p className="mt-2 text-muted">
-                Call booking is being set up. Send a message and say a call suits you better, and I&apos;ll send times.
+                Call booking is being set up. {formWorks ? "Send a message" : "Message me on social"} and say a call
+                suits you better, and I&apos;ll send times.
               </p>
             </div>
           )}
