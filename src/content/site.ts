@@ -11,7 +11,7 @@ export const site = {
 
 export const mainNav = [
   { label: "Work", href: "/work" },
-  { label: "Services", href: "/#services" },
+  { label: "WordPress", href: "/wordpress" },
   { label: "Event Tech", href: "/event-tech" },
   { label: "About", href: "/about" },
 ] as const;
@@ -28,6 +28,5 @@ export const heroProjects = [
   { title: "SMG Relief", lane: "WordPress", image: "/work/smg-wrn.jpg" },
   { title: "CPHnights", lane: "Event Tech", image: "/work/cphnights.jpg" },
   { title: "Hilaritas", lane: "Accessibility", image: "/work/hilaritas-suites.jpg" },
-  { title: "The Cliff", lane: "Other", image: "/work/the-cliff.jpg" },
   { title: "Balanced Book", lane: "Other", image: "/work/balanced-book.jpg" },
 ] as const;

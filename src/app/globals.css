@@ -135,3 +135,25 @@
     scroll-behavior: auto !important;
   }
 }
+
+@keyframes ticket-float {
+  0%,
+  100% {
+    transform: rotate(3deg) translateY(0);
+  }
+  50% {
+    transform: rotate(2deg) translateY(-10px);
+  }
+}
+
+@keyframes qr-scan {
+  0% {
+    top: 10px;
+  }
+  50% {
+    top: 186px;
+  }
+  100% {
+    top: 10px;
+  }
+}
