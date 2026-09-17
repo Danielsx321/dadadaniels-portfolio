@@ -1,59 +1,34 @@
 import Link from "next/link";
 import { cn } from "./cn";
 
-type Variant = "primary" | "secondary" | "ghost";
+type Variant = "glow" | "ghost";
+type Size = "md" | "lg";
 
 const base =
-  "focus-ring inline-flex items-center justify-center gap-2 rounded-pill px-5 py-2.5 text-[0.9375rem] font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60";
+  "inline-flex items-center justify-center gap-2 rounded-full font-semibold tracking-[-0.005em] transition-[transform,box-shadow,background-color] duration-300 ease-soft";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-accent text-white hover:bg-accent-strong",
-  secondary: "border border-line bg-surface text-ink hover:border-ink",
-  ghost: "text-ink hover:bg-accent-soft",
+  glow: "glow-mint hover:-translate-y-px hover:shadow-[0_0_0_1px_rgb(75_255_165/0.7),0_12px_44px_rgb(75_255_165/0.45),inset_0_1px_0_rgb(255_255_255/0.6)]",
+  ghost: "border border-glass-line bg-glass text-text hover:bg-white/8",
 };
 
-type CommonProps = {
+const sizes: Record<Size, string> = {
+  md: "px-4 py-2.5 text-sm",
+  lg: "px-6 py-3.5 text-[0.9375rem]",
+};
+
+type Props = {
+  href: string;
   variant?: Variant;
+  size?: Size;
   className?: string;
   children: React.ReactNode;
 };
 
-type ButtonAsLink = CommonProps & {
-  href: string;
-  external?: boolean;
-};
-
-type ButtonAsButton = CommonProps &
-  React.ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined };
-
-export function Button(props: ButtonAsLink | ButtonAsButton) {
-  const { variant = "primary", className, children } = props;
-  const classes = cn(base, variants[variant], className);
-
-  if (props.href !== undefined) {
-    if (props.external) {
-      return (
-        <a
-          href={props.href}
-          className={classes}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {children}
-        </a>
-      );
-    }
-    return (
-      <Link href={props.href} className={classes}>
-        {children}
-      </Link>
-    );
-  }
-
-  const { variant: _v, className: _c, children: _ch, ...buttonProps } = props;
+export function Button({ href, variant = "glow", size = "lg", className, children }: Props) {
   return (
-    <button className={classes} {...buttonProps}>
+    <Link href={href} className={cn(base, variants[variant], sizes[size], className)}>
       {children}
-    </button>
+    </Link>
   );
 }

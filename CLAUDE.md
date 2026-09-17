@@ -1,6 +1,6 @@
 # CLAUDE.md, dadadaniels-portfolio
 
-Dada Daniels' portfolio site. Next.js 15 (App Router), React 19, TypeScript, Tailwind v4, MDX content, pnpm, deployed on Vercel. Plan of record: `~/Desktop/master-claude-template/plans/2026-09-16-portfolio-rebuild-nextjs.md`.
+Dada Daniels' portfolio site. Next.js 16.3 (App Router), React 19.3, TypeScript, Tailwind v4, MDX content, pnpm, deployed on Vercel. Plan of record: `~/Desktop/master-claude-template/plans/2026-09-16-portfolio-rebuild-nextjs.md`.
 
 Positioning: WordPress Developer is the core. Full Stack Developer and No-Code Developer are the other titles. Event Tech is its own standalone section.
 
@@ -12,8 +12,13 @@ Positioning: WordPress Developer is the core. Full Stack Developer and No-Code D
 - **Accuracy rules:** Hilaritas Suites was accessibility remediation, not a full build. The Cliff Residences was the original WordPress + Elementor + TranslatePress build; the live site has since been replaced by someone else, so it sits in Other work with `status: replaced` and no live link.
 - **Never on the site:** NowTutors, the German 5,000+ registrant event (until a sanitised case study exists), Daughtry, template testimonials or template blog posts, "SEO" positioning, years-of-experience framing.
 - **Copy voice:** Daniels' client voice, plain verbs, American spelling, one idea per paragraph. Not "only WordPress", not an event planner, not an SEO person.
-- **Tokens by role.** Raw colour values live only in `src/app/globals.css` `@theme`. Components use role names (`canvas`, `surface`, `ink`, `ink-muted`, `line`, `accent`, `accent-soft`).
-- Light theme only for now.
+- **Design of record:** `~/Desktop/master-claude-template/outputs/portfolio/mockup/home-v3.html` (approved 2026-09-17). Dark glass look, floating pill nav, single mint accent #4BFFA5, Inter Tight + Instrument Serif italic (`accent` utility) for one phrase per heading.
+- **Tokens by role.** Raw colour values live only in `src/app/globals.css` `@theme`. Components use role names (`canvas`, `surface`, `text`, `muted`, `subtle`, `mint`, `mint-deep`, `on-mint`, `glass`, `glass-line`).
+- **Mint never on a light surface** (1.3:1 on white). Text on mint uses `on-mint`.
+- **Motion:** hero content never starts at opacity 0 (protects LCP). Everything static under `prefers-reduced-motion`. No preloader, smooth-scroll library or custom cursor.
+- **Confirmed roles:** SMG = full build. SmartPatrol = accessibility work only. PPTM = everything event related only. Tag and describe them that way.
+- **Prices shown ("from"):** WordPress $250, Full Stack $1,000, No-Code $1,000, Event Tech $800.
+- **No email address anywhere on the site.** Contact form and Cal.com only.
 
 ## Adding a case study
 

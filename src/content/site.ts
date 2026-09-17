@@ -1,6 +1,5 @@
 export const site = {
   name: "Dada Daniels",
-  shortName: "Daniels",
   titles: ["WordPress Developer", "Full Stack Developer", "No-Code Developer"],
   location: "Lagos, Nigeria",
   socials: [
@@ -12,9 +11,23 @@ export const site = {
 
 export const mainNav = [
   { label: "Work", href: "/work" },
-  { label: "WordPress", href: "/wordpress" },
-  { label: "Full Stack", href: "/full-stack" },
-  { label: "No-Code", href: "/no-code" },
+  { label: "Services", href: "/#services" },
   { label: "Event Tech", href: "/event-tech" },
   { label: "About", href: "/about" },
+] as const;
+
+/**
+ * Projects shown in the hero carousel. Lane labels follow the confirmed roles:
+ * SmartPatrol = accessibility work, PPTM = event tech only, SMG = full build.
+ */
+export const heroProjects = [
+  { title: "SmartPatrol", lane: "Accessibility", image: "/work/smart-patrol.jpg" },
+  { title: "TicketMonsterz", lane: "Event Tech", image: "/work/ticketmonsterz.jpg" },
+  { title: "Richard Saad", lane: "WordPress", image: "/work/richard-saad.jpg" },
+  { title: "PPTM", lane: "Event Tech", image: "/work/pptm.jpg" },
+  { title: "SMG Relief", lane: "WordPress", image: "/work/smg-wrn.jpg" },
+  { title: "CPHnights", lane: "Event Tech", image: "/work/cphnights.jpg" },
+  { title: "Hilaritas", lane: "Accessibility", image: "/work/hilaritas-suites.jpg" },
+  { title: "The Cliff", lane: "Other", image: "/work/the-cliff.jpg" },
+  { title: "Balanced Book", lane: "Other", image: "/work/balanced-book.jpg" },
 ] as const;
