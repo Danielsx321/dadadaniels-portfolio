@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Instrument_Serif, Inter_Tight } from "next/font/google";
 import { site } from "@/content/site";
+import { siteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 const interTight = Inter_Tight({
@@ -18,7 +19,7 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://dadadaniels.vercel.app"),
+  metadataBase: siteUrl(),
   title: {
     default: `${site.name} | WordPress, Full Stack and No-Code Developer`,
     template: `%s | ${site.name}`,
