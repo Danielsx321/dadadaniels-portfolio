@@ -128,7 +128,6 @@ export function HeroCarousel() {
               src={project.image}
               alt={project.title}
               fill
-              loading={i < 4 ? "eager" : "lazy"}
               sizes="(max-width: 900px) 200px, 290px"
               className="object-cover object-left"
             />
