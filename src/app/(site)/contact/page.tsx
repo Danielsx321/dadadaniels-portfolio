@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { CalEmbed } from "@/components/contact/cal-embed";
+import { CalendlyEmbed } from "@/components/contact/calendly-embed";
 import { ContactForm } from "@/components/contact/contact-form";
 import { SectionHeading } from "@/components/sections/section-heading";
 import { process as steps } from "@/content/process";
@@ -14,7 +14,15 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  const calLink = process.env.NEXT_PUBLIC_CAL_LINK?.trim();
+  const calendlyUrl = (() => {
+    const raw = process.env.NEXT_PUBLIC_CALENDLY_URL?.trim();
+    if (!raw) return undefined;
+    try {
+      return new URL(raw).hostname.endsWith("calendly.com") ? raw : undefined;
+    } catch {
+      return undefined;
+    }
+  })();
   // Without a mail provider the form cannot deliver, so offer a route that works instead.
   const formWorks = Boolean(process.env.RESEND_API_KEY?.trim() && process.env.CONTACT_TO_EMAIL?.trim());
 
@@ -81,10 +89,10 @@ export default function ContactPage() {
             </p>
           </div>
 
-          {calLink ? (
+          {calendlyUrl ? (
             <div className="mt-4">
               <h2 className="mb-3 text-lg font-semibold">Book a 30 minute call</h2>
-              <CalEmbed link={calLink} />
+              <CalendlyEmbed url={calendlyUrl} />
             </div>
           ) : (
             <div className="glass mt-4 rounded-[22px] p-6">
