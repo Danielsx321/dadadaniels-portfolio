@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef } from "react";
+import { whenIdle } from "@/components/motion/when-idle";
 import { heroProjects } from "@/content/site";
 
 const SLOT_DEG = 360 / 14;
@@ -23,52 +24,81 @@ export function HeroCarousel() {
     const loop = SLOT_DEG * cards.length;
 
     let offset = -SLOT_DEG * 4;
+    let radius = 0;
     let paused = false;
     let visible = true;
-    let last = performance.now();
+    let running = false;
+    let last = 0;
     let raf = 0;
 
+    // Measure once (and on resize), never inside the animation loop.
+    const measure = () => {
+      radius = cards[0].offsetWidth * 3.1;
+    };
+
     const layout = () => {
-      const radius = cards[0].offsetWidth * 3.1;
-      cards.forEach((card, i) => {
+      for (let i = 0; i < cards.length; i++) {
         const angle = ((((i * SLOT_DEG + offset) % loop) + loop) % loop) - loop / 2;
         const shown = Math.abs(angle) < MAX_ANGLE;
-        card.style.opacity = shown ? String(Math.max(0, 1 - Math.pow(Math.abs(angle) / MAX_ANGLE, 3))) : "0";
-        card.style.transform = `translateZ(${radius * 0.62}px) rotateY(${angle}deg) translateZ(${-radius}px)`;
-      });
+        const style = cards[i].style;
+        style.opacity = shown ? String(Math.max(0, 1 - Math.pow(Math.abs(angle) / MAX_ANGLE, 3))) : "0";
+        style.visibility = shown ? "visible" : "hidden";
+        style.transform = `translateZ(${radius * 0.62}px) rotateY(${angle}deg) translateZ(${-radius}px)`;
+      }
     };
 
     const tick = (now: number) => {
-      const dt = now - last;
-      last = now;
-      if (!paused) offset += dt * 0.006;
-      layout();
-      if (visible) raf = requestAnimationFrame(tick);
+      const dt = Math.min(now - last, 64);
+      // About 30 frames a second is plenty for a slow drift and halves the work.
+      if (dt >= 32) {
+        last = now;
+        if (!paused) offset += dt * 0.006;
+        layout();
+      }
+      if (visible && running) raf = requestAnimationFrame(tick);
+    };
+
+    const start = () => {
+      if (running || reduce || !visible) return;
+      running = true;
+      last = performance.now();
+      raf = requestAnimationFrame(tick);
+    };
+    const stop = () => {
+      running = false;
+      cancelAnimationFrame(raf);
     };
 
     const onEnter = () => (paused = true);
     const onLeave = () => (paused = false);
+    const onResize = () => {
+      measure();
+      layout();
+    };
     stage.addEventListener("pointerenter", onEnter);
     stage.addEventListener("pointerleave", onLeave);
+    window.addEventListener("resize", onResize);
 
     const io = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
-      cancelAnimationFrame(raf);
-      if (visible && !reduce) {
-        last = performance.now();
-        raf = requestAnimationFrame(tick);
-      }
+      if (visible) start();
+      else stop();
     });
 
+    measure();
     layout();
-    if (!reduce) io.observe(stage);
-    window.addEventListener("resize", layout);
+    const cancelIdle = whenIdle(() => {
+      io.observe(stage);
+      start();
+    });
+
     return () => {
-      cancelAnimationFrame(raf);
+      cancelIdle();
+      stop();
       io.disconnect();
       stage.removeEventListener("pointerenter", onEnter);
       stage.removeEventListener("pointerleave", onLeave);
-      window.removeEventListener("resize", layout);
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 
@@ -93,7 +123,7 @@ export function HeroCarousel() {
               src={project.image}
               alt={project.title}
               fill
-              loading="eager"
+              loading={i < 4 ? "eager" : "lazy"}
               sizes="(max-width: 900px) 200px, 290px"
               className="object-cover object-left"
             />

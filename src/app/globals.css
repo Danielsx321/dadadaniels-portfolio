@@ -89,11 +89,9 @@
 @keyframes rise {
   from {
     transform: translateY(28px);
-    filter: blur(6px);
   }
   to {
     transform: none;
-    filter: none;
   }
 }
 
