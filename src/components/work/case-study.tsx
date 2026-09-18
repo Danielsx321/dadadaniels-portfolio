@@ -3,7 +3,9 @@ import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Button } from "@/components/ui/button";
 import { Pill } from "@/components/ui/pill";
+import { JsonLd } from "@/components/seo/json-ld";
 import type { CaseStudy as Study } from "@/lib/schema";
+import { siteUrl } from "@/lib/site-url";
 
 const mdx = {
   h2: (p: React.ComponentProps<"h2">) => (
@@ -32,8 +34,22 @@ export function CaseStudy({ study, safe = false, next }: { study: Study; safe?: 
   ];
   const base = safe ? "/w" : "/work";
 
+  const origin = siteUrl().origin;
+  const structured = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: study.title,
+    abstract: study.summary,
+    url: `${origin}/work/${study.slug}`,
+    creator: { "@type": "Person", name: "Dada Daniels", url: origin },
+    about: study.client,
+    keywords: study.stack.join(", "),
+    ...(study.hero ? { image: `${origin}${study.hero}` } : {}),
+  };
+
   return (
     <article className={`mx-auto max-w-site px-5 pb-24 ${safe ? "pt-16" : "pt-36"}`}>
+      {!safe && <JsonLd data={structured} />}
       <header className="mx-auto max-w-[860px] text-center">
         <Pill>{study.tag}</Pill>
         <h1 className="mt-5 text-[clamp(40px,6vw,76px)] leading-[1] font-semibold tracking-[-0.045em]">{study.title}</h1>
