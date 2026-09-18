@@ -4,8 +4,10 @@ import { WorkCard } from "@/components/work/work-card";
 import { Button } from "@/components/ui/button";
 import { getLane, type LaneContent } from "@/content/lanes";
 import { getByLane } from "@/lib/content";
+import { reviewsFor } from "@/content/reviews";
 import { CtaBlock } from "./cta-block";
 import { EventSpotlight } from "./event-spotlight";
+import { ReviewBlock } from "./review-block";
 import { SectionHeading } from "./section-heading";
 
 export function LanePage({ slug }: { slug: LaneContent["slug"] }) {
@@ -63,6 +65,8 @@ export function LanePage({ slug }: { slug: LaneContent["slug"] }) {
           </ul>
         </section>
       )}
+
+      <ReviewBlock reviews={reviewsFor(slug)} />
 
       <CtaBlock />
     </>
