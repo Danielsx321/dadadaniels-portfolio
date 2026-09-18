@@ -1,16 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const format = (n: number) => n.toLocaleString("en-US");
 
 /**
- * Counts up to a real value once, when seen. The final value is what screen readers get,
- * and what shows without JavaScript or under reduced motion.
+ * Counts up to a real value once, when seen. Writes straight to the DOM so React does not
+ * re-render every frame. The final value is in the HTML, for screen readers and no-JS visitors.
  */
 export function CountUp({ to, duration = 1400 }: { to: number; duration?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [value, setValue] = useState(to);
 
   useEffect(() => {
     const el = ref.current;
@@ -23,7 +22,7 @@ export function CountUp({ to, duration = 1400 }: { to: number; duration?: number
         const start = performance.now();
         const step = (now: number) => {
           const p = Math.min(1, (now - start) / duration);
-          setValue(Math.round(to * (1 - Math.pow(1 - p, 4))));
+          el.textContent = format(Math.round(to * (1 - Math.pow(1 - p, 4))));
           if (p < 1) raf = requestAnimationFrame(step);
         };
         raf = requestAnimationFrame(step);
@@ -38,8 +37,10 @@ export function CountUp({ to, duration = 1400 }: { to: number; duration?: number
   }, [to, duration]);
 
   return (
-    <span ref={ref}>
-      <span aria-hidden="true">{format(value)}</span>
+    <span>
+      <span ref={ref} aria-hidden="true">
+        {format(to)}
+      </span>
       <span className="sr-only">{format(to)}</span>
     </span>
   );

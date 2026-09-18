@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef } from "react";
+import { isLowPower } from "@/components/motion/device";
 import { whenIdle } from "@/components/motion/when-idle";
 import { heroProjects } from "@/content/site";
 
@@ -22,6 +23,8 @@ export function HeroCarousel() {
     const cards = cardRefs.current.filter((c): c is HTMLDivElement => c !== null);
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const loop = SLOT_DEG * cards.length;
+    // About 30 fps normally, about 20 fps on low-power devices.
+    const frameMs = isLowPower() ? 50 : 32;
 
     let offset = -SLOT_DEG * 4;
     let radius = 0;
@@ -50,7 +53,7 @@ export function HeroCarousel() {
     const tick = (now: number) => {
       const dt = Math.min(now - last, 64);
       // About 30 frames a second is plenty for a slow drift and halves the work.
-      if (dt >= 32) {
+      if (dt >= frameMs) {
         last = now;
         if (!paused) offset += dt * 0.006;
         layout();
@@ -87,13 +90,15 @@ export function HeroCarousel() {
 
     measure();
     layout();
+    // Give the page a moment after it settles before starting the drift.
+    let delay = 0;
     const cancelIdle = whenIdle(() => {
-      io.observe(stage);
-      start();
+      delay = window.setTimeout(() => io.observe(stage), 1500);
     });
 
     return () => {
       cancelIdle();
+      window.clearTimeout(delay);
       stop();
       io.disconnect();
       stage.removeEventListener("pointerenter", onEnter);
@@ -127,7 +132,7 @@ export function HeroCarousel() {
               sizes="(max-width: 900px) 200px, 290px"
               className="object-cover object-left"
             />
-            <div className="absolute inset-x-2.5 bottom-2.5 flex items-center justify-between rounded-[10px] bg-[rgb(7_8_10/0.72)] px-2.5 py-1.5 text-xs font-medium backdrop-blur-md">
+            <div className="absolute inset-x-2.5 bottom-2.5 flex items-center justify-between rounded-[10px] bg-[rgb(7_8_10/0.88)] px-2.5 py-1.5 text-xs font-medium">
               {project.title}
               <span className="text-[0.6875rem] text-mint">{project.lane}</span>
             </div>

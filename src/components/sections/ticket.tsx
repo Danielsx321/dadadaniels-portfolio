@@ -31,10 +31,20 @@ export function Ticket() {
     finder(0, n - 7);
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = window.setInterval(() => {
-      setCheckedIn((v) => Math.min(10000, v + Math.ceil(Math.random() * 4)));
-    }, 900);
-    return () => window.clearInterval(id);
+    let id = 0;
+    const io = new IntersectionObserver(([entry]) => {
+      window.clearInterval(id);
+      if (entry.isIntersecting) {
+        id = window.setInterval(() => {
+          setCheckedIn((v) => Math.min(10000, v + Math.ceil(Math.random() * 4)));
+        }, 1200);
+      }
+    });
+    io.observe(c);
+    return () => {
+      io.disconnect();
+      window.clearInterval(id);
+    };
   }, []);
 
   return (
@@ -50,7 +60,7 @@ export function Ticket() {
       <p className="mt-1 text-[13px] text-muted">General admission &middot; Gate B</p>
       <div className="relative mx-auto mt-5 size-[200px] overflow-hidden rounded-2xl bg-white p-3.5">
         <canvas ref={canvasRef} width={172} height={172} className="block size-full" />
-        <div className="absolute inset-x-2 h-[3px] animate-[qr-scan_2.4s_cubic-bezier(.65,0,.35,1)_infinite] rounded bg-mint shadow-[0_0_18px_4px_rgb(75_255_165/0.8)]" />
+        <div className="absolute inset-x-2 top-2.5 h-[3px] animate-[qr-scan_2.4s_cubic-bezier(.65,0,.35,1)_infinite] will-change-transform rounded bg-mint shadow-[0_0_18px_4px_rgb(75_255_165/0.8)]" />
       </div>
       <div className="mt-4 flex items-center justify-center gap-2.5 rounded-2xl border border-mint/30 bg-mint/10 p-3 text-sm font-semibold text-mint">
         <span className="grid size-5 place-items-center rounded-full bg-mint text-xs text-on-mint">&#10003;</span>

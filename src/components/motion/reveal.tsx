@@ -46,8 +46,8 @@ export function Reveal({
       ref={ref as React.RefObject<never>}
       style={{ transitionDelay: `${delay}ms` }}
       className={cn(
-        "transition-[transform,opacity,filter] duration-1000 ease-soft",
-        shown ? "translate-y-0 opacity-100 blur-0" : "translate-y-8 opacity-0 blur-sm",
+        "transition-[transform,opacity] duration-1000 ease-soft",
+        shown ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
         className,
       )}
     >
