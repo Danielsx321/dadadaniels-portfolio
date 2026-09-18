@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { isLowPower } from "@/components/motion/device";
 import { whenIdle } from "@/components/motion/when-idle";
 
 /** Sparse mint and white dots drifting upward behind the hero. Static when reduced motion is on. */
@@ -12,7 +13,8 @@ export function Particles({ className }: { className?: string }) {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Low-power devices get the same dots, drawn once, without the drift.
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches || isLowPower();
 
     type Dot = { x: number; y: number; r: number; s: number; a: number; mint: boolean };
     let w = 0;
@@ -71,10 +73,14 @@ export function Particles({ className }: { className?: string }) {
 
     size();
     draw();
-    const cancelIdle = whenIdle(() => io.observe(canvas));
+    let delay = 0;
+    const cancelIdle = whenIdle(() => {
+      delay = window.setTimeout(() => io.observe(canvas), 1500);
+    });
     window.addEventListener("resize", size);
     return () => {
       cancelIdle();
+      window.clearTimeout(delay);
       cancelAnimationFrame(raf);
       io.disconnect();
       window.removeEventListener("resize", size);

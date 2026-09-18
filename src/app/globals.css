@@ -145,13 +145,11 @@
 }
 
 @keyframes qr-scan {
-  0% {
-    top: 10px;
+  0%,
+  100% {
+    transform: translateY(0);
   }
   50% {
-    top: 186px;
-  }
-  100% {
-    top: 10px;
+    transform: translateY(176px);
   }
 }
