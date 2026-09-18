@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { whenIdle } from "@/components/motion/when-idle";
 
 /** Sparse mint and white dots drifting upward behind the hero. Static when reduced motion is on. */
 export function Particles({ className }: { className?: string }) {
@@ -19,6 +20,7 @@ export function Particles({ className }: { className?: string }) {
     let dots: Dot[] = [];
     let raf = 0;
     let visible = true;
+    let last = 0;
 
     const size = () => {
       const ratio = Math.min(window.devicePixelRatio || 1, 2);
@@ -27,7 +29,7 @@ export function Particles({ className }: { className?: string }) {
       canvas.width = w * ratio;
       canvas.height = h * ratio;
       ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-      dots = Array.from({ length: Math.round((w * h) / 9000) }, () => ({
+      dots = Array.from({ length: Math.min(160, Math.round((w * h) / 12000)) }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
         r: Math.random() * 1.2 + 0.2,
@@ -37,7 +39,12 @@ export function Particles({ className }: { className?: string }) {
       }));
     };
 
-    const draw = () => {
+    const draw = (now = 0) => {
+      if (now - last < 32 && now !== 0) {
+        if (!reduce && visible) raf = requestAnimationFrame(draw);
+        return;
+      }
+      last = now;
       ctx.clearRect(0, 0, w, h);
       for (const d of dots) {
         if (!reduce) {
@@ -64,9 +71,10 @@ export function Particles({ className }: { className?: string }) {
 
     size();
     draw();
-    io.observe(canvas);
+    const cancelIdle = whenIdle(() => io.observe(canvas));
     window.addEventListener("resize", size);
     return () => {
+      cancelIdle();
       cancelAnimationFrame(raf);
       io.disconnect();
       window.removeEventListener("resize", size);

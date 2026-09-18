@@ -1,15 +1,8 @@
 import { z } from "zod";
 
-export const LANES = ["wordpress", "full-stack", "no-code", "event-tech", "other"] as const;
-export type Lane = (typeof LANES)[number];
+import { LANES } from "./lanes";
 
-export const laneLabels: Record<Lane, string> = {
-  wordpress: "WordPress",
-  "full-stack": "Full Stack",
-  "no-code": "No-Code",
-  "event-tech": "Event Tech",
-  other: "Other work",
-};
+export { LANES, laneLabels, type Lane } from "./lanes";
 
 const metric = z.object({
   label: z.string().min(2),

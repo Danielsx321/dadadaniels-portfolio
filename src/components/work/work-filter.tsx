@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { Reveal } from "@/components/motion/reveal";
 import { cn } from "@/components/ui/cn";
-import { laneLabels, type CaseStudy, type Lane } from "@/lib/schema";
+import { laneLabels, type Lane } from "@/lib/lanes";
+import type { CaseStudy } from "@/lib/schema";
 import { WorkCard } from "./work-card";
 
 type Filter = "all" | Exclude<Lane, "other">;
