@@ -14,6 +14,17 @@ What the three kept changes do:
 
 Lighthouse scores are level before and after, measured side by side. Treat them as "unchanged, already good" and the byte and layout-shift numbers as the real result.
 
+## Production result (PageSpeed Insights, 19 September 2026)
+
+Run by Daniels on pagespeed.web.dev against https://dadadaniels.vercel.app/ after the merge:
+
+| Device | Performance | Accessibility | Best Practices | SEO | Agentic Browsing |
+|---|---|---|---|---|---|
+| Mobile | 98 | 100 | 100 | 100 | 2/2 |
+| Desktop | 100 | 100 | 100 | 100 | 2/2 |
+
+No field data yet ("No Data" under real users), which is normal for a site this new. These numbers come from Google's servers, so they are the ones to quote. The local mobile scores of about 90 further down were held back by the test machine.
+
 ## Before and after
 
 Both versions of the site were built separately and measured side by side: Lighthouse 13, six pages, mobile and desktop, three runs each, alternating between the untouched site and the changed one so both face the same machine conditions (72 runs, no failures).
@@ -75,7 +86,7 @@ No copy, prices, reviews or case study content were touched.
 
 ## Needs your decision
 
-1. **Measure production after merging.** Production could not be measured from this Mac: the connection took 7 s to deliver the 18 KB HTML, and the free PageSpeed API quota was used up. After the merge, run the six pages through pagespeed.web.dev on a normal connection. That is the number clients and Google see.
+1. **Production is measured** for the home page (98 mobile, 100 desktop, see the top of this report). The other five pages have not been run through pagespeed.web.dev yet.
 2. **AVIF on Vercel.** The first request for each image size is slower to encode than WebP; after that it is cached at the edge. AVIF and WebP variants both count toward Vercel's image optimization usage, so glance at the Usage tab after a week. If it is a concern, reverting is one line in `next.config.ts`.
 3. **What would actually move the mobile score further** is shipping less framework JavaScript, and that means design decisions rather than tuning: for example dropping the client-side `Reveal` wrappers in favour of CSS scroll animations, so fewer components hydrate. Worth doing only if production numbers say mobile needs it. At 90 and above, I would leave it.
 4. **Builds depend on reaching Google Fonts.** One build failed here when the connection dropped. Vercel and CI are not affected, but moving the two font files into the repo with `next/font/local` would make local builds work offline. Optional.
