@@ -15,7 +15,7 @@ Positioning: WordPress Developer is the core. Full Stack Developer and No-Code D
 - **Design of record:** `~/Desktop/master-claude-template/outputs/portfolio/mockup/home-v3.html` (approved 2026-09-17). Dark glass look, floating pill nav, single mint accent #4BFFA5, Inter Tight + Instrument Serif italic (`accent` utility) for one phrase per heading.
 - **Tokens by role.** Raw colour values live only in `src/app/globals.css` `@theme`. Components use role names (`canvas`, `surface`, `text`, `muted`, `subtle`, `mint`, `mint-deep`, `on-mint`, `glass`, `glass-line`).
 - **Mint never on a light surface** (1.3:1 on white). Text on mint uses `on-mint`.
-- **Motion:** hero content never starts at opacity 0 (protects LCP). Everything static under `prefers-reduced-motion`. No preloader, smooth-scroll library or custom cursor.
+- **Motion:** hero content never starts at opacity 0 (protects LCP). Everything static under `prefers-reduced-motion`. No preloader, smooth-scroll library or custom cursor. The one loading indicator is `src/components/layout/nav-progress.tsx`: a small mint ring under the nav that appears only when a clicked internal link takes longer than 120 ms to load.
 - **Confirmed roles:** SMG = full build. SmartPatrol = accessibility work only. PPTM = everything event related only. Tag and describe them that way.
 - **Prices shown ("from"):** WordPress $250, Full Stack $1,000, No-Code $1,000, Event Tech $800.
 - **No email address anywhere on the site.** Contact form and Cal.com only.

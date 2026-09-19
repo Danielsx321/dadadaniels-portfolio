@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Instrument_Serif, Inter_Tight } from "next/font/google";
+import { NavProgress } from "@/components/layout/nav-progress";
 import { site } from "@/content/site";
 import { siteUrl } from "@/lib/site-url";
 import "./globals.css";
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         >
           Skip to content
         </a>
+        <NavProgress />
         {children}
       </body>
     </html>
