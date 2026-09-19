@@ -36,9 +36,13 @@ export function CountUp({ to, duration = 1400 }: { to: number; duration?: number
     };
   }, [to, duration]);
 
+  // The invisible copy holds the final width, so the number does not push its neighbours while counting.
   return (
-    <span>
-      <span ref={ref} aria-hidden="true">
+    <span className="inline-grid">
+      <span aria-hidden="true" className="invisible col-start-1 row-start-1">
+        {format(to)}
+      </span>
+      <span ref={ref} aria-hidden="true" className="col-start-1 row-start-1">
         {format(to)}
       </span>
       <span className="sr-only">{format(to)}</span>
