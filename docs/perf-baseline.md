@@ -2,6 +2,10 @@
 
 Measured before any change on branch `perf/audit`. Commit under test: `1a00ec6` (what production was serving on the day).
 
+## Read this first
+
+The mobile scores, LCP and TBT below were taken while this Mac was under load, which was only discovered later. Run side by side with the changed build on a quiet machine, the untouched home page scores about 90 on mobile (LCP 3.6 s, TBT 72 ms), not 85. Weights, request counts, CLS and the list of causes are not affected by load and stand as written. See `docs/perf-report.md`.
+
 ## How it was measured
 
 Lighthouse 13 (performance category only), Chrome 153, headless. Mobile uses Lighthouse's default simulated phone (Moto G Power class, 4x CPU slowdown, slow 4G). Desktop uses the `desktop` preset. Three runs per page and device, medians reported.
