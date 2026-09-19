@@ -12,41 +12,40 @@ What the three kept changes do:
 - **The layout shift on /event-tech is gone.** CLS 0.051 to 0.000 on mobile and desktop.
 - **The home page stops preloading four carousel images** ahead of the heading, fonts and CSS.
 
-Lighthouse mobile scores moved by a point or two, which is inside the run-to-run noise on this machine. Treat the scores as "unchanged, already good" and the byte and layout-shift numbers as the real result.
+Lighthouse scores are level before and after, measured side by side. Treat them as "unchanged, already good" and the byte and layout-shift numbers as the real result.
 
 ## Before and after
 
-Local production build, Lighthouse 13, medians of 3 runs. Weights are compressed transfer sizes and do not depend on machine load. CLS does not either. Scores, LCP and TBT do, so read those loosely (see "About the timings" below).
+Both versions of the site were built separately and measured side by side: Lighthouse 13, six pages, mobile and desktop, three runs each, alternating between the untouched site and the changed one so both face the same machine conditions (72 runs, no failures).
+
+Weights are compressed transfer sizes. They and CLS do not depend on how busy the machine is, so those columns are exact. Scores, LCP and TBT do depend on it; see the note under the table.
 
 | Page | Device | Score before | Score after | LCP before s | LCP after s | CLS before | CLS after | Images before KB | Images after KB | Page before KB | Page after KB |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| / | mobile | 85 | 88 | 3.8 | 3.8 | 0.000 | 0.000 | 160 | 103 | 441 | 384 |
-| / | desktop | 99 | 100 | 0.9 | 0.8 | 0.000 | 0.000 | 288 | 185 | 599 | 496 |
-| /work | mobile | 94 | 92 | 3.1 | 3.1 | 0.000 | 0.000 | 239 | 155 | 519 | 435 |
-| /work | desktop | 100 | 100 | 0.7 | 0.7 | 0.000 | 0.000 | 192 | 122 | 515 | 446 |
-| /wordpress | mobile | 95 | 93 | 2.9 | 2.9 | 0.000 | 0.000 | 121 | 80 | 389 | 347 |
+| / | mobile | 90 | 90 | 3.6 | 3.4 | 0.000 | 0.000 | 160 | 103 | 441 | 384 |
+| / | desktop | 99 | 100 | 0.8 | 0.8 | 0.000 | 0.000 | 288 | 185 | 599 | 496 |
+| /work | mobile | 92 | 88 | 3.3 | 3.4 | 0.000 | 0.000 | 239 | 155 | 519 | 435 |
+| /work | desktop | 100 | 100 | 0.7 | 0.7 | 0.000 | 0.000 | 192 | 122 | 516 | 447 |
+| /wordpress | mobile | 94 | 94 | 2.9 | 2.9 | 0.000 | 0.000 | 121 | 80 | 389 | 347 |
 | /wordpress | desktop | 100 | 100 | 0.6 | 0.6 | 0.000 | 0.000 | 96 | 62 | 400 | 366 |
-| /event-tech | mobile | 96 | 94 | 2.7 | 2.8 | 0.051 | 0.000 | 90 | 58 | 358 | 325 |
-| /event-tech | desktop | 100 | 100 | 0.6 | 0.6 | 0.056 | 0.000 | 95 | 60 | 398 | 363 |
-| /contact | mobile | 97 | 94 | 2.6 | 2.6 | 0.000 | 0.000 | 3 | 2 | 257 | 257 |
-| /contact | desktop | 100 | 100 | 0.6 | 0.6 | 0.000 | 0.000 | 1 | 1 | 299 | 299 |
-| /work/smg-relief-network | mobile | 90 | 96 | 2.9 | 2.7 | 0.000 | 0.000 | 37 | 26 | 298 | 287 |
-| /work/smg-relief-network | desktop | 100 | 100 | 0.6 | 0.6 | 0.000 | 0.000 | 72 | 52 | 377 | 356 |
+| /event-tech | mobile | 88 | 95 | 2.9 | 2.8 | 0.051 | 0.000 | 90 | 58 | 358 | 325 |
+| /event-tech | desktop | 100 | 100 | 0.7 | 0.7 | 0.048 | 0.000 | 95 | 60 | 398 | 363 |
+| /contact | mobile | 96 | 87 | 2.6 | 2.8 | 0.000 | 0.000 | 3 | 2 | 257 | 257 |
+| /contact | desktop | 100 | 98 | 0.7 | 0.7 | 0.000 | 0.000 | 1 | 1 | 299 | 299 |
+| /work/smg-relief-network | mobile | 96 | 96 | 2.7 | 2.7 | 0.000 | 0.000 | 37 | 26 | 298 | 287 |
+| /work/smg-relief-network | desktop | 100 | 100 | 0.7 | 0.6 | 0.000 | 0.000 | 72 | 52 | 377 | 356 |
 
 JavaScript is unchanged at 159 to 187 KB compressed per page. About 90% of that is React and Next.js themselves; the site's own code is roughly 50 KB uncompressed.
 
-### About the timings
+### How to read the scores
 
-The "after" run happened while this Mac was busy, and it shows: /contact lost 3 points and gained 150 ms of blocking time even though nothing on that page changed (it has 2 KB of images and none of the touched components). The same drift sits on every mobile row.
+The scores are level. The differences in either direction are noise from the machine, and the table shows how large that noise is: /contact has 2 KB of images and none of the touched components, so nothing about it changed, yet it moved 9 points on mobile.
 
-To get a fair read I built the untouched site separately and ran it side by side with the changed build, alternating run by run, on the home page during a quiet spell:
+Lighthouse records a CPU speed benchmark with every run. On this Mac it swung between 53 and 2,660 during the suite, and a third of the runs (12 on the untouched site, 13 on the changed one) happened while the processor was starved. Those runs show every kind of work taking about four times longer at once, on both versions equally, which is what a busy machine looks like and not what slower code looks like. The score, LCP and TBT columns above are medians of the runs with a benchmark of 1,000 or more; the /contact desktop row had no such run on the untouched side and uses all three.
 
-| Home, mobile, 5 runs each | Score | LCP s | TBT ms | Speed Index s |
-|---|---|---|---|---|
-| Untouched site | 90 | 3.6 | 72 | 2.3 |
-| With the changes | 91 | 3.5 | 64 | 2.3 |
+An earlier side by side set on the home page during a quieter spell (5 runs each) agrees: 90 for the untouched site against 91 with the changes, LCP 3.6 s against 3.5 s.
 
-So the true baseline for home mobile is about 90, not the 85 in the first baseline (that run was already under load), and the honest gain in score is about one point. A second side by side set gave 89 against 91. I could not get a quiet enough machine to repeat this for all six pages.
+The first baseline in `docs/perf-baseline.md` put home mobile at 85. That run was already under load; about 90 is the real figure.
 
 ## What changed and why
 
