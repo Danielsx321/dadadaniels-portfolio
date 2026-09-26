@@ -1,0 +1,41 @@
+---
+title: "Sailing Polynesia recovery"
+client: "Sailing Polynesia"
+lane: "wordpress"
+tag: "Security + recovery"
+summary: "An inherited Italian and English charter site with a webshell in it. Cleaned, upgraded, made lighter and set up so each language shows up properly."
+role: "Malware clean-up, upgrades, speed and multilingual fixes across three contracts (not the original build)"
+stack: ["WordPress", "Elementor", "WPML", "FluentSMTP", "Search Console"]
+liveUrl: "https://www.sailingpolynesia.com"
+year: 2026
+order: 17
+metrics:
+  - label: "Mobile page weight"
+    value: "7.4 MB to 2.75 MB"
+    source: "Homepage transfer size before and after image work, Sep 2026"
+  - label: "Homepage images"
+    value: "3.7 MB to 378 KB"
+    source: "Homepage image total before and after compression, Sep 2026"
+  - label: "Pages served from cache"
+    value: "30 of 30"
+    source: "Cache preload check across every page, Sep 2026"
+thumb: "/work/sailing-polynesia.jpg"
+hero: "/work/sailing-polynesia-desktop.jpg"
+---
+
+## The problem
+
+Sailing Polynesia runs private catamaran charters in French Polynesia, with the site in Italian and English. A routine backup turned up a webshell. The site was also on PHP 7.4, heavy on phones, and most English pages were telling Google to show the Italian version instead.
+
+## What I did
+
+- **Malware:** checked 2,729 core files and 703 theme files, 33 plugins and 68 blocklists, removed what did not belong, rotated every credential and wrote up what was found.
+- **Upgrades:** moved Elementor and PHP from 7.4 to 8.x.
+- **Speed:** compressed 91 images and cut the homepage images from 3.7 MB to 378 KB.
+- **Email:** set up FluentSMTP on the host's mail server and tested both contact forms.
+- **Languages:** found 12 of 15 English pages pointing Google at the Italian page, switched hreflang on, cleaned the sitemap, wrote new titles and descriptions for all 30 pages in both languages, and set up Search Console and GA4 in the owner's name.
+- **Follow-up:** a "site is down" report turned out to be a cache that expired daily but rebuilt monthly, so uncached pages took 3 to 51 seconds. I fixed the preload. Later I cleared three medium-risk plugin vulnerabilities flagged by the security scanner, with a full backup first.
+
+## Result
+
+Mobile page weight went from **7.4 MB to 2.75 MB**. All **30 of 30** pages now serve from cache and the owner confirmed the site loads in about 3 seconds. The security scanner is back to 0 issues.
