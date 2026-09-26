@@ -1,0 +1,28 @@
+---
+title: "Ronald McDonald House Norfolk care"
+client: "Ronald McDonald House Charities of Norfolk"
+lane: "wordpress"
+tag: "Maintenance"
+summary: "Monthly care for three charity WordPress sites, starting with donation emails that were not arriving and logins nobody could account for."
+role: "Monthly maintenance of three existing sites (not the original builds)"
+stack: ["WordPress", "Elementor", "Hostinger", "Amazon SES"]
+liveUrl: "https://ronaldmcdonaldhousenorfolk.org"
+year: 2026
+order: 75
+thumb: "/work/rmhc-norfolk.jpg"
+hero: "/work/rmhc-norfolk-desktop.jpg"
+---
+
+## The problem
+
+Ronald McDonald House Norfolk runs three WordPress and Elementor sites on one Hostinger account. Donation alerts were bouncing, the donation platform could not send from the charity's own domain, and nobody was sure who had access to what.
+
+## What I did
+
+- Added the Amazon SES DKIM records the donation platform (Arreva) needs to send from the charity's own domain, and checked they resolve live.
+- Decoded the bounced donation alerts and traced them to the platform still notifying an address on an old domain.
+- Audited every email address and login across the three sites. Moved the only admin login off a stranger's test Gmail address and the admin email off an unknown alias, onto the site manager's own address, and flagged outside accounts and alert addresses for removal.
+
+## Result
+
+Donation email authentication is **verified live** on the charity's domain, the cause of the bounced alerts is known, and the admin login and email now belong to the people who run the site.

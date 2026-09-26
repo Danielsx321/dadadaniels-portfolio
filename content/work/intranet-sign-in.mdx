@@ -1,0 +1,28 @@
+---
+title: "Intranet sign-in recovery"
+client: "Hartford company intranet"
+lane: "wordpress"
+tag: "Troubleshooting"
+summary: "Staff were locked out of a WordPress intranet for 18 days by a Microsoft sign-in error. Fixed without touching Entra ID, then brought back the pages that had gone blank."
+role: "Diagnosis and repair on an existing private intranet (not the original build)"
+stack: ["WordPress", "WPO365", "Microsoft Entra ID", "Elementor"]
+year: 2026
+order: 45
+thumb: "/work/hartford-intranet.jpg"
+---
+
+## The problem
+
+A company intranet on WordPress signs staff in with their Microsoft 365 accounts through WPO365. For 18 days every login failed with Microsoft error AADSTS700016, and nobody could get in. Soon after, a team page that lists the company's posts went blank for everyone.
+
+## What I did
+
+- Traced the sign-in failure to the plugin settings: a client secret ID had been saved in the application ID field, so Microsoft refused every request. Fixed it without touching the Entra ID setup, and turned the secret expiry warning back on so it cannot quietly lapse again.
+- Found the 131 posts behind the blank page were intact. The listing block had stopped rendering because PRO Elements registered no widgets against the installed Elementor, so I rebuilt the listing with the theme's own block.
+- Traced that to the root cause: PRO Elements needed Elementor 4.0 or newer while the site ran 3.34. Took a database, plugins and themes backup, updated Elementor to 4.3.2, and brought every Pro-built page back, including the original social media archive with its reels and paging.
+
+## Result
+
+Staff sign-in **works again** after 18 days down, the team page shows all **131 posts**, and every page built with the Pro widgets renders again on Elementor 4.3.2.
+
+This is a private intranet, so there are no screenshots of client pages.

@@ -1,0 +1,43 @@
+---
+title: "Mind Master"
+client: "Own product"
+lane: "full-stack"
+tag: "Web app"
+summary: "A phone-first brain training game with five modes. Installable, works offline, and scores 100 in every Lighthouse category on mobile."
+role: "Designed and built from scratch"
+stack: ["TypeScript", "Vite", "PWA", "Vitest", "Playwright", "GitHub Actions"]
+liveUrl: "https://mind-master-mu.vercel.app"
+year: 2026
+featured: true
+order: 13
+metrics:
+  - label: "Lighthouse mobile, all four categories"
+    value: "100"
+    source: "Lighthouse mobile preset on production, 24 Sep 2026"
+  - label: "Total page weight"
+    value: "52 KB"
+    source: "Lighthouse mobile preset on production, 24 Sep 2026"
+  - label: "Automated tests"
+    value: "44"
+    source: "28 Vitest unit tests and 16 Playwright end-to-end tests in the repo"
+thumb: "/work/mind-master.jpg"
+hero: "/work/mind-master-desktop.jpg"
+---
+
+## The problem
+
+I wanted a small product that shows how I build a web app end to end: quick to load on a cheap phone, usable offline, and tested properly, not just clicked through once.
+
+## What I built
+
+Five quick games (Memory Numbers, Number Sequence, Pattern Memory, Quick Reaction and Find Different), each with three lives a run, a best score that saves on every point, and a high score screen with recent runs.
+
+- Plain TypeScript on Vite, no framework and no runtime dependencies. The production build is about 14 KB of JavaScript.
+- Installs to the home screen and keeps working offline through a service worker, with a safe update path when a new version ships.
+- 28 unit tests pin each game's rules and difficulty curve, and 16 Playwright tests play the games on a phone profile. CI runs them on every change.
+
+The code is public at [github.com/Danielsx321/mind-master](https://github.com/Danielsx321/mind-master).
+
+## Result
+
+Lighthouse on mobile scores **100 / 100 / 100 / 100**, the whole page weighs **52 KB**, and layout shift is **0**.

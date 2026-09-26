@@ -1,0 +1,42 @@
+---
+title: "Sparkora Cleaning speed and accessibility"
+client: "Sparkora Cleaning"
+lane: "wordpress"
+tag: "Speed + accessibility"
+summary: "A slow Elementor site for a Georgia cleaning company made fast and fully accessible, with phone call tracking rebuilt and a later crash recovered."
+role: "Speed, accessibility, tracking and recovery on an existing site (not the original build)"
+stack: ["WordPress", "Elementor Pro", "Site Kit", "GA4"]
+liveUrl: "https://sparkoracleaning.com"
+year: 2026
+order: 15
+metrics:
+  - label: "Mobile PageSpeed"
+    value: "49 to 85"
+    source: "PageSpeed Insights, homepage, 18 to 20 Sep 2026"
+  - label: "Desktop PageSpeed"
+    value: "67 to 98"
+    source: "PageSpeed Insights, homepage, 18 to 20 Sep 2026"
+  - label: "Mobile largest contentful paint"
+    value: "13.1s to 3.4s"
+    source: "PageSpeed Insights, homepage, 18 to 20 Sep 2026"
+  - label: "Accessibility score"
+    value: "100"
+    source: "PageSpeed Insights accessibility audit, mobile and desktop, Sep 2026"
+thumb: "/work/sparkora.jpg"
+hero: "/work/sparkora-desktop.jpg"
+---
+
+## The problem
+
+Sparkora Cleaning serves homes and offices in Milledgeville, Georgia, and most of its leads come from people calling the number on the site. The site was slow on phones, the layout jumped while it loaded, and the call tracking could not be trusted.
+
+## What I did
+
+- Removed Google Tag Manager (377 KB) and rebuilt phone call tracking through Site Kit's own tag, then checked that each tap sends exactly one GA4 event.
+- Found three phone numbers that could not be dialled, including the header number, which was not a link at all, and fixed them.
+- Fixed the layout shift on both mobile and desktop and worked through the accessibility audit until it passed in full.
+- Later, a plugin auto-update broke Elementor Pro and took the site down with a fatal error. I read the stack trace, restored that one plugin folder from backup instead of rolling back the whole site, and traced the cause to a hosting auto-update setting.
+
+## Result
+
+Mobile PageSpeed went from **49 to 85** and desktop from **67 to 98**. Mobile LCP fell from **13.1s to 3.4s**, layout shift went to **0** on both (from 0.203 on mobile and 0.468 on desktop), and Accessibility scored **100** on both.
