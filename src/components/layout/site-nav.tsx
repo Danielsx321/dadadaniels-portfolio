@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
 import { Monogram } from "@/components/brand/monogram";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/components/ui/cn";
 import { mainNav } from "@/content/site";
@@ -49,6 +50,9 @@ export function SiteNav() {
         </ul>
 
         <div className="flex items-center gap-1.5">
+          <span className="hidden md:block">
+            <ThemeToggle />
+          </span>
           <Button href="/contact" size="md">
             Let&apos;s talk
           </Button>
@@ -88,6 +92,9 @@ export function SiteNav() {
               </Link>
             </li>
           ))}
+          <li className="mt-1 border-t border-glass-line pt-1">
+            <ThemeToggle withLabel />
+          </li>
         </ul>
       </div>
     </header>

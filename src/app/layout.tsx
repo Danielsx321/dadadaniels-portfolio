@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Instrument_Serif, Inter_Tight } from "next/font/google";
 import { NavProgress } from "@/components/layout/nav-progress";
+import { ThemeScript } from "@/components/theme/theme-script";
 import { site } from "@/content/site";
 import { siteUrl } from "@/lib/site-url";
 import "./globals.css";
@@ -30,12 +31,19 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#07080a", // colour-ok: browser chrome colour, matches --color-canvas
+  // colour-ok: browser chrome colour per system theme, matches --color-canvas
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#07080a" }, // colour-ok: dark canvas
+    { media: "(prefers-color-scheme: light)", color: "#f6f7f5" }, // colour-ok: light canvas
+  ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${interTight.variable} ${instrumentSerif.variable}`}>
+    <html lang="en" className={`${interTight.variable} ${instrumentSerif.variable}`} suppressHydrationWarning>
+      <head>
+        <ThemeScript />
+      </head>
       <body className="min-h-dvh">
         <a
           href="#main"

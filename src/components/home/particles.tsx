@@ -25,11 +25,18 @@ export function Particles({ className }: { className?: string }) {
     let last = 0;
     let colourA = "";
     let colourB = "";
+    let fade = 1;
 
-    const size = () => {
+    const readColours = () => {
       const css = getComputedStyle(document.documentElement);
       colourA = css.getPropertyValue("--color-particle-a").trim();
       colourB = css.getPropertyValue("--color-particle-b").trim();
+      // Dark dots on a light canvas read heavier than light dots on dark, so they are drawn fainter.
+      fade = document.documentElement.dataset.theme === "light" ? 0.6 : 1;
+    };
+
+    const size = () => {
+      readColours();
       const ratio = Math.min(window.devicePixelRatio || 1, 2);
       w = canvas.offsetWidth;
       h = canvas.offsetHeight;
@@ -61,7 +68,7 @@ export function Particles({ className }: { className?: string }) {
             d.x = Math.random() * w;
           }
         }
-        ctx.globalAlpha = d.a * ((d.y / h) * 0.7 + 0.3);
+        ctx.globalAlpha = d.a * ((d.y / h) * 0.7 + 0.3) * fade;
         ctx.fillStyle = d.mint ? colourA : colourB;
         ctx.beginPath();
         ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
@@ -76,6 +83,14 @@ export function Particles({ className }: { className?: string }) {
       if (visible) draw();
     });
 
+    // Repaint once when the theme switches, so a static (reduced motion) canvas updates too.
+    const themeWatch = new MutationObserver(() => {
+      readColours();
+      // A running loop picks the new colours up on its next frame; only a paused canvas needs a draw.
+      if (reduce || !visible) draw();
+    });
+    themeWatch.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
     size();
     draw();
     let delay = 0;
@@ -88,6 +103,7 @@ export function Particles({ className }: { className?: string }) {
       window.clearTimeout(delay);
       cancelAnimationFrame(raf);
       io.disconnect();
+      themeWatch.disconnect();
       window.removeEventListener("resize", size);
     };
   }, []);
