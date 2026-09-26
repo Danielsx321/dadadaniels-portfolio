@@ -13,6 +13,8 @@ export function WorkFilter({ studies }: { studies: CaseStudy[] }) {
   const [filter, setFilter] = useState<Filter>("all");
   const main = studies.filter((s) => s.lane !== "other");
   const other = studies.filter((s) => s.lane === "other");
+  const otherWithThumb = other.filter((s) => s.thumb);
+  const otherText = other.filter((s) => !s.thumb);
   const lanesPresent = Array.from(new Set(main.map((s) => s.lane))) as Exclude<Lane, "other">[];
   const shown = filter === "all" ? main : main.filter((s) => s.lane === filter);
   const options: Filter[] = ["all", ...lanesPresent];
@@ -51,8 +53,18 @@ export function WorkFilter({ studies }: { studies: CaseStudy[] }) {
           <h2 className="text-2xl font-semibold tracking-[-0.03em]">
             Other <span className="accent">work</span>
           </h2>
-          <ul className="mt-6 grid gap-3 md:grid-cols-2">
-            {other.map((s) => (
+          {/* Studies with a thumbnail get the image card; replaced sites without screenshots stay as text. */}
+          {otherWithThumb.length > 0 && (
+            <ul className="mt-6 grid gap-4 md:grid-cols-2">
+              {otherWithThumb.map((s) => (
+                <li key={s.slug}>
+                  <WorkCard study={s} />
+                </li>
+              ))}
+            </ul>
+          )}
+          <ul className="mt-4 grid gap-3 md:grid-cols-2">
+            {otherText.map((s) => (
               <li key={s.slug}>
                 <a
                   href={`/work/${s.slug}`}
