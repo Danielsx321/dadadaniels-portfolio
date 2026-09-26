@@ -7,7 +7,7 @@ import { budgets, services } from "@/content/contact";
 const initial: ContactState = { ok: false };
 
 const field =
-  "mt-2 w-full rounded-2xl border border-glass-line bg-white/4 px-4 py-3 text-base text-text placeholder:text-subtle focus:border-mint/60";
+  "mt-2 w-full rounded-2xl border border-glass-line bg-tint/4 px-4 py-3 text-base text-text placeholder:text-subtle focus:border-mint-ink/60";
 
 export function ContactForm() {
   const [state, action, pending] = useActionState(sendEnquiry, initial);
@@ -44,14 +44,14 @@ export function ContactForm() {
             Your name
           </label>
           <input id="name" name="name" required maxLength={80} autoComplete="name" className={field} />
-          {state.errors?.name && <span className="mt-1.5 block text-sm text-[#ff8f86]">{state.errors.name}</span>}
+          {state.errors?.name && <span className="mt-1.5 block text-sm text-danger">{state.errors.name}</span>}
         </p>
         <p>
           <label htmlFor="email" className="text-sm text-muted">
             Email
           </label>
           <input id="email" name="email" type="email" required autoComplete="email" className={field} />
-          {state.errors?.email && <span className="mt-1.5 block text-sm text-[#ff8f86]">{state.errors.email}</span>}
+          {state.errors?.email && <span className="mt-1.5 block text-sm text-danger">{state.errors.email}</span>}
         </p>
       </div>
 
@@ -90,11 +90,11 @@ export function ContactForm() {
           What are you trying to build or fix?
         </label>
         <textarea id="message" name="message" required rows={6} minLength={20} maxLength={3000} className={field} />
-        {state.errors?.message && <span className="mt-1.5 block text-sm text-[#ff8f86]">{state.errors.message}</span>}
+        {state.errors?.message && <span className="mt-1.5 block text-sm text-danger">{state.errors.message}</span>}
       </p>
 
       {state.errors?.form && (
-        <p role="alert" className="mt-5 rounded-2xl border border-[#ff8f86]/40 bg-[#ff8f86]/10 px-4 py-3 text-sm text-[#ff8f86]">
+        <p role="alert" className="mt-5 rounded-2xl border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger">
           {state.errors.form}
         </p>
       )}

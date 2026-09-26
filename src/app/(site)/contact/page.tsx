@@ -57,7 +57,7 @@ export default function ContactPage() {
                       href={s.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block rounded-2xl border border-glass-line bg-white/4 px-4 py-3.5 text-center font-semibold hover:border-mint/40"
+                      className="block rounded-2xl border border-glass-line bg-tint/4 px-4 py-3.5 text-center font-semibold hover:border-mint-ink/40"
                     >
                       {s.label}
                     </a>
@@ -71,8 +71,8 @@ export default function ContactPage() {
           )}
           <ul className="mt-6 grid gap-3 sm:grid-cols-2">
             {steps.map((s, i) => (
-              <li key={s.name} className="rounded-2xl border border-glass-line bg-white/3 p-4">
-                <span className="font-serif text-lg text-mint italic">{String(i + 1).padStart(2, "0")}</span>
+              <li key={s.name} className="rounded-2xl border border-glass-line bg-tint/3 p-4">
+                <span className="font-serif text-lg text-mint-ink italic">{String(i + 1).padStart(2, "0")}</span>
                 <p className="mt-1 text-[15px] font-semibold">{s.name}</p>
                 <p className="text-[13px] text-muted">{s.text}</p>
               </li>

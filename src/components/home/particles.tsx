@@ -23,8 +23,13 @@ export function Particles({ className }: { className?: string }) {
     let raf = 0;
     let visible = true;
     let last = 0;
+    let colourA = "";
+    let colourB = "";
 
     const size = () => {
+      const css = getComputedStyle(document.documentElement);
+      colourA = css.getPropertyValue("--color-particle-a").trim();
+      colourB = css.getPropertyValue("--color-particle-b").trim();
       const ratio = Math.min(window.devicePixelRatio || 1, 2);
       w = canvas.offsetWidth;
       h = canvas.offsetHeight;
@@ -57,7 +62,7 @@ export function Particles({ className }: { className?: string }) {
           }
         }
         ctx.globalAlpha = d.a * ((d.y / h) * 0.7 + 0.3);
-        ctx.fillStyle = d.mint ? "#4bffa5" : "#ffffff";
+        ctx.fillStyle = d.mint ? colourA : colourB;
         ctx.beginPath();
         ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
         ctx.fill();

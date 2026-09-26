@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <main id="main" className="grid min-h-dvh place-items-center px-5 text-center">
       <div>
-        <Monogram className="mx-auto w-10 text-mint" />
+        <Monogram className="mx-auto w-10 text-mint-ink" />
         <h1 className="mt-6 text-[clamp(40px,6vw,72px)] leading-none font-semibold tracking-[-0.045em]">
           Page not <span className="accent">found</span>
         </h1>

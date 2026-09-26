@@ -19,8 +19,8 @@ export function GlowCard({
     e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
   };
   const classes = cn(
-    "glass group relative flex flex-col overflow-hidden rounded-[22px] transition-[transform,border-color] duration-500 ease-soft hover:-translate-y-1 hover:border-mint/35",
-    "before:pointer-events-none before:absolute before:inset-0 before:bg-[radial-gradient(420px_260px_at_var(--mx,80%)_var(--my,0%),rgb(75_255_165/0.12),transparent_65%)] before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100",
+    "glass group relative flex flex-col overflow-hidden rounded-[22px] transition-[transform,border-color] duration-500 ease-soft hover:-translate-y-1 hover:border-mint-ink/35",
+    "before:pointer-events-none before:absolute before:inset-0 before:bg-[radial-gradient(420px_260px_at_var(--mx,80%)_var(--my,0%),--alpha(var(--color-glow)/12%),transparent_65%)] before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100",
     className,
   );
   if (href) {

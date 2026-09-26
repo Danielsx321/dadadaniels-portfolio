@@ -18,7 +18,7 @@ export function CalendlyEmbed({ url }: { url: string }) {
       <div className="calendly-inline-widget" data-url={themed.toString()} style={{ minWidth: 320, height: 700 }} />
       <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
       <noscript>
-        <a href={url} className="block p-6 text-mint underline">
+        <a href={url} className="block p-6 text-mint-ink underline">
           Book a call on Calendly
         </a>
       </noscript>

@@ -11,9 +11,9 @@ export function ProofStrip({ className }: { className?: string }) {
           <Reveal as="li" key={p.label} delay={i * 80}>
             <GlowCard className="h-full px-5 py-6">
               <p className="text-[clamp(28px,3.6vw,44px)] leading-none font-semibold tracking-[-0.04em]">
-                {p.prefix && <span className="text-mint">{p.prefix}</span>}
+                {p.prefix && <span className="text-mint-ink">{p.prefix}</span>}
                 <CountUp to={p.count} />
-                {p.suffix && <span className="text-mint">{p.suffix}</span>}
+                {p.suffix && <span className="text-mint-ink">{p.suffix}</span>}
               </p>
               <p className="mt-2.5 text-sm leading-snug text-muted">{p.label}</p>
             </GlowCard>

@@ -8,8 +8,8 @@ const base =
   "inline-flex items-center justify-center gap-2 rounded-full font-semibold tracking-[-0.005em] transition-[transform,box-shadow,background-color] duration-300 ease-soft";
 
 const variants: Record<Variant, string> = {
-  glow: "glow-mint hover:-translate-y-px hover:shadow-[0_0_0_1px_rgb(75_255_165/0.7),0_12px_44px_rgb(75_255_165/0.45),inset_0_1px_0_rgb(255_255_255/0.6)]",
-  ghost: "border border-glass-line bg-glass text-text hover:bg-white/8",
+  glow: "glow-mint glow-mint-hover hover:-translate-y-px",
+  ghost: "border border-glass-line bg-glass text-text hover:bg-tint/8",
 };
 
 const sizes: Record<Size, string> = {

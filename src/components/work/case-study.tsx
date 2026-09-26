@@ -84,13 +84,13 @@ export function CaseStudy({ study, safe = false, next }: { study: Study; safe?: 
       </dl>
 
       {study.hero && (
-        <div className="mx-auto mt-10 max-w-[1100px] overflow-hidden rounded-2xl border border-glass-line bg-surface shadow-[0_40px_120px_rgb(0_0_0/0.6)]">
+        <div className="mx-auto mt-10 max-w-[1100px] overflow-hidden rounded-2xl border border-glass-line bg-surface shadow-[0_40px_120px_--alpha(var(--color-shade)/60%)]">
           <div className="flex items-center gap-2.5 border-b border-glass-line px-3.5 py-2.5">
-            <i className="size-2.5 rounded-full bg-[#ff5f57]" />
-            <i className="size-2.5 rounded-full bg-[#febc2e]" />
-            <i className="size-2.5 rounded-full bg-[#28c840]" />
+            <i className="size-2.5 rounded-full bg-[#ff5f57]" />{/* colour-ok: window dot */}
+            <i className="size-2.5 rounded-full bg-[#febc2e]" />{/* colour-ok: window dot */}
+            <i className="size-2.5 rounded-full bg-[#28c840]" />{/* colour-ok: window dot */}
             {study.liveUrl && (
-              <span className="mx-auto rounded-lg bg-white/5 px-3.5 py-1 text-xs text-muted">
+              <span className="mx-auto rounded-lg bg-tint/5 px-3.5 py-1 text-xs text-muted">
                 {new URL(study.liveUrl).hostname}
               </span>
             )}
@@ -112,7 +112,7 @@ export function CaseStudy({ study, safe = false, next }: { study: Study; safe?: 
         <ul className="mx-auto mt-10 grid max-w-[980px] gap-3 sm:grid-cols-2">
           {study.metrics.map((m) => (
             <li key={m.label} className="glass rounded-[22px] px-6 py-5">
-              <p className="text-5xl font-semibold tracking-[-0.04em] text-mint">{m.value}</p>
+              <p className="text-5xl font-semibold tracking-[-0.04em] text-mint-ink">{m.value}</p>
               <p className="mt-2 text-base">{m.label}</p>
               <p className="mt-1 text-xs text-subtle">Source: {m.source}</p>
             </li>

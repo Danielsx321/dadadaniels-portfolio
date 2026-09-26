@@ -121,7 +121,7 @@ export function HeroCarousel() {
             ref={(el) => {
               cardRefs.current[i] = el;
             }}
-            className="absolute top-0 left-[calc(clamp(180px,20.4vw,288px)/-2)] aspect-[4/5] w-[clamp(180px,20.4vw,288px)] overflow-hidden rounded-[18px] border border-white/12 bg-surface shadow-[0_30px_60px_rgb(0_0_0/0.5)] will-change-transform"
+            className="absolute top-0 left-[calc(clamp(180px,20.4vw,288px)/-2)] aspect-[4/5] w-[clamp(180px,20.4vw,288px)] overflow-hidden rounded-[18px] border border-tint/12 bg-surface shadow-[0_30px_60px_--alpha(var(--color-shade)/50%)] will-change-transform"
             style={{ opacity: 0 }}
           >
             <Image
@@ -131,9 +131,9 @@ export function HeroCarousel() {
               sizes="(max-width: 900px) 200px, 290px"
               className="object-cover object-left"
             />
-            <div className="absolute inset-x-2.5 bottom-2.5 flex items-center justify-between rounded-[10px] bg-[rgb(7_8_10/0.88)] px-2.5 py-1.5 text-xs font-medium">
+            <div className="absolute inset-x-2.5 bottom-2.5 flex items-center justify-between rounded-[10px] bg-scrim/88 px-2.5 py-1.5 text-xs font-medium">
               {project.title}
-              <span className="text-[0.6875rem] text-mint">{project.lane}</span>
+              <span className="text-[0.6875rem] text-mint-ink">{project.lane}</span>
             </div>
           </div>
         ))}

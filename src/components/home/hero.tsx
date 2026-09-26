@@ -9,14 +9,14 @@ export function Hero() {
       <Particles className="absolute inset-0 -z-20 size-full" />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-[-10%] left-1/2 -z-10 h-[700px] w-[1100px] -translate-x-1/2 bg-[radial-gradient(closest-side,rgb(75_255_165/0.16),rgb(75_255_165/0.05)_55%,transparent)] blur-[10px]"
+        className="pointer-events-none absolute top-[-10%] left-1/2 -z-10 h-[700px] w-[1100px] -translate-x-1/2 bg-[radial-gradient(closest-side,--alpha(var(--color-glow)/16%),--alpha(var(--color-glow)/5%)_55%,transparent)] blur-[10px]"
       />
 
       <div className="mx-auto max-w-[980px] px-5 pt-[150px] text-center">
         <span className="animate-lift inline-flex items-center gap-2.5 rounded-full border border-glass-line bg-glass py-1.5 pr-3.5 pl-1.5 text-[0.8125rem] text-muted [animation-delay:100ms]">
           <span
             aria-hidden="true"
-            className="grid size-6 place-items-center rounded-full bg-mint-deep text-xs text-mint shadow-[inset_0_0_0_1px_rgb(75_255_165/0.35)]"
+            className="grid size-6 place-items-center rounded-full bg-mint-deep text-xs text-mint-ink shadow-[inset_0_0_0_1px_--alpha(var(--color-glow)/35%)]"
           >
             &#9679;
           </span>
@@ -29,7 +29,7 @@ export function Hero() {
           <span className="animate-rise block">Websites and systems</span>
           <span className="animate-rise block [animation-delay:120ms]">
             your business{" "}
-            <span className="accent [text-shadow:0_0_40px_rgb(75_255_165/0.35)]">runs on</span>
+            <span className="accent [text-shadow:0_0_40px_--alpha(var(--color-glow)/35%)]">runs on</span>
           </span>
         </h1>
 
@@ -49,13 +49,13 @@ export function Hero() {
 
       <HeroCarousel />
 
-      <div className="animate-frame-up relative z-10 mx-auto -mt-[120px] w-[min(1040px,calc(100%-32px))] overflow-hidden rounded-2xl border border-glass-line bg-surface shadow-[0_-20px_80px_rgb(75_255_165/0.1),0_40px_120px_rgb(0_0_0/0.6)] [animation-delay:600ms]">
+      <div className="animate-frame-up relative z-10 mx-auto -mt-[120px] w-[min(1040px,calc(100%-32px))] overflow-hidden rounded-2xl border border-glass-line bg-surface shadow-[0_-20px_80px_--alpha(var(--color-glow)/10%),0_40px_120px_--alpha(var(--color-shade)/60%)] [animation-delay:600ms]">
         <div className="flex items-center gap-2.5 border-b border-glass-line px-3.5 py-2.5">
-          <i className="size-2.5 rounded-full bg-[#ff5f57]" />
-          <i className="size-2.5 rounded-full bg-[#febc2e]" />
-          <i className="size-2.5 rounded-full bg-[#28c840]" />
-          <span className="mx-auto flex items-center gap-2 rounded-lg bg-white/5 px-3.5 py-1 text-xs text-muted">
-            <span aria-hidden="true" className="text-mint">
+          <i className="size-2.5 rounded-full bg-[#ff5f57]" />{/* colour-ok: window dot */}
+          <i className="size-2.5 rounded-full bg-[#febc2e]" />{/* colour-ok: window dot */}
+          <i className="size-2.5 rounded-full bg-[#28c840]" />{/* colour-ok: window dot */}
+          <span className="mx-auto flex items-center gap-2 rounded-lg bg-tint/5 px-3.5 py-1 text-xs text-muted">
+            <span aria-hidden="true" className="text-mint-ink">
               &#9679;
             </span>
             smgwrn.org
