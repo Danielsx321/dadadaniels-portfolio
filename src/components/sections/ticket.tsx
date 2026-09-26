@@ -15,7 +15,7 @@ export function Ticket() {
     const s = c.width / n;
     let seed = 7;
     const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
-    ctx.fillStyle = "#0a0b0d";
+    ctx.fillStyle = "#0a0b0d"; // colour-ok: QR ink, dark on white in both themes
     const finder = (x: number, y: number) => {
       ctx.fillRect(x * s, y * s, 7 * s, 7 * s);
       ctx.clearRect((x + 1) * s, (y + 1) * s, 5 * s, 5 * s);
@@ -50,19 +50,20 @@ export function Ticket() {
   return (
     <div
       aria-hidden="true"
-      className="relative mx-auto max-w-[380px] rotate-3 animate-[ticket-float_6s_ease-in-out_infinite] rounded-3xl border border-white/14 bg-gradient-to-b from-white/8 to-white/3 p-5 shadow-[0_40px_100px_rgb(0_0_0/0.55),0_0_80px_rgb(75_255_165/0.12)] backdrop-blur-md"
+      className="relative mx-auto max-w-[380px] rotate-3 animate-[ticket-float_6s_ease-in-out_infinite] rounded-3xl border border-tint/14 bg-gradient-to-b from-tint/8 to-tint/3 p-5 shadow-[0_40px_100px_--alpha(var(--color-shade)/55%),0_0_80px_--alpha(var(--color-glow)/12%)] backdrop-blur-md"
     >
       <div className="flex justify-between text-xs text-muted">
         <span>ADMIT ONE</span>
-        <span className="text-mint">&#9679; Valid</span>
+        <span className="text-mint-ink">&#9679; Valid</span>
       </div>
       <p className="mt-3.5 text-[22px] font-semibold tracking-[-0.02em]">Your Event 2026</p>
       <p className="mt-1 text-[13px] text-muted">General admission &middot; Gate B</p>
+      {/* colour-ok: the QR tile is white in both themes so the code scans */}
       <div className="relative mx-auto mt-5 size-[200px] overflow-hidden rounded-2xl bg-white p-3.5">
         <canvas ref={canvasRef} width={172} height={172} className="block size-full" />
-        <div className="absolute inset-x-2 top-2.5 h-[3px] animate-[qr-scan_2.4s_cubic-bezier(.65,0,.35,1)_infinite] will-change-transform rounded bg-mint shadow-[0_0_18px_4px_rgb(75_255_165/0.8)]" />
+        <div className="absolute inset-x-2 top-2.5 h-[3px] animate-[qr-scan_2.4s_cubic-bezier(.65,0,.35,1)_infinite] will-change-transform rounded bg-mint shadow-[0_0_18px_4px_--alpha(var(--color-glow)/80%)]" />
       </div>
-      <div className="mt-4 flex items-center justify-center gap-2.5 rounded-2xl border border-mint/30 bg-mint/10 p-3 text-sm font-semibold text-mint">
+      <div className="mt-4 flex items-center justify-center gap-2.5 rounded-2xl border border-mint-ink/30 bg-mint-ink/10 p-3 text-sm font-semibold text-mint-ink">
         <span className="grid size-5 place-items-center rounded-full bg-mint text-xs text-on-mint">&#10003;</span>
         Checked in
       </div>

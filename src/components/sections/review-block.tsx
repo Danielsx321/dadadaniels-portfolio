@@ -24,7 +24,7 @@ function Attribution({ review }: { review: Review }) {
     <p className="flex items-center gap-3 text-sm">
       <span
         aria-hidden="true"
-        className="grid size-9 flex-none place-items-center rounded-full bg-mint-deep text-[13px] font-bold text-mint"
+        className="grid size-9 flex-none place-items-center rounded-full bg-mint-deep text-[13px] font-bold text-mint-ink"
       >
         {review.initials}
       </span>
@@ -50,7 +50,7 @@ export function ReviewBlock({ reviews = allReviews, heading = true }: { reviews?
         </Reveal>
       )}
       <Reveal className={cn("glass mx-auto max-w-[980px] rounded-[28px] p-8 sm:p-12", heading && "mt-12")}>
-        <p aria-label="5 out of 5 stars" className="mb-5 text-sm tracking-[3px] text-mint">
+        <p aria-label="5 out of 5 stars" className="mb-5 text-sm tracking-[3px] text-mint-ink">
           &#9733;&#9733;&#9733;&#9733;&#9733;
         </p>
         <Quote review={featured} large />

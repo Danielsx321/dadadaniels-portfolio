@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#07080a",
+  themeColor: "#07080a", // colour-ok: browser chrome colour, matches --color-canvas
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

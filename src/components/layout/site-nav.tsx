@@ -24,10 +24,10 @@ export function SiteNav() {
     <header className="fixed inset-x-0 top-4 z-50 px-3">
       <nav
         aria-label="Main"
-        className="mx-auto flex w-full max-w-[920px] items-center justify-between gap-3 rounded-[28px] border border-glass-line bg-[rgb(12_14_16/0.6)] py-2 pr-2 pl-4 shadow-[0_10px_40px_rgb(0_0_0/0.35),inset_0_1px_0_rgb(255_255_255/0.06)] backdrop-blur-md"
+        className="mx-auto flex w-full max-w-[920px] items-center justify-between gap-3 rounded-[28px] border border-glass-line bg-veil/60 py-2 pr-2 pl-4 shadow-[0_10px_40px_--alpha(var(--color-shade)/35%),inset_0_1px_0_--alpha(var(--color-tint)/6%)] backdrop-blur-md"
       >
         <Link href="/" className="flex items-center gap-2.5 rounded-full text-[0.9375rem] font-semibold tracking-[-0.01em]">
-          <Monogram className="w-5 text-mint" />
+          <Monogram className="w-5 text-mint-ink" />
           Dada Daniels
         </Link>
 
@@ -74,7 +74,7 @@ export function SiteNav() {
       <div
         id={panelId}
         hidden={!open}
-        className="mx-auto mt-2 w-full max-w-[920px] rounded-3xl border border-glass-line bg-[rgb(12_14_16/0.92)] p-3 backdrop-blur-md md:hidden"
+        className="mx-auto mt-2 w-full max-w-[920px] rounded-3xl border border-glass-line bg-veil/92 p-3 backdrop-blur-md md:hidden"
       >
         <ul className="flex flex-col">
           {mainNav.map((item) => (

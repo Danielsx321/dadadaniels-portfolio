@@ -57,9 +57,9 @@ export function NavProgress() {
   return (
     <div
       role="status"
-      className="pointer-events-none fixed top-[84px] left-1/2 z-[70] grid size-11 -translate-x-1/2 place-items-center rounded-full border border-glass-line bg-[rgb(12_14_16/0.85)] shadow-[0_10px_40px_rgb(0_0_0/0.45)] backdrop-blur-md"
+      className="pointer-events-none fixed top-[84px] left-1/2 z-[70] grid size-11 -translate-x-1/2 place-items-center rounded-full border border-glass-line bg-veil/85 shadow-[0_10px_40px_--alpha(var(--color-shade)/45%)] backdrop-blur-md"
     >
-      <span aria-hidden="true" className="size-5 animate-spin rounded-full border-2 border-mint/25 border-t-mint" />
+      <span aria-hidden="true" className="size-5 animate-spin rounded-full border-2 border-mint-ink/25 border-t-mint-ink" />
       <span className="sr-only">Loading page</span>
     </div>
   );

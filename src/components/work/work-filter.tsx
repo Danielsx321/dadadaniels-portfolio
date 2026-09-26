@@ -29,7 +29,7 @@ export function WorkFilter({ studies }: { studies: CaseStudy[] }) {
             className={cn(
               "rounded-full border px-4 py-2 text-sm transition-colors",
               filter === o
-                ? "border-mint bg-mint text-on-mint"
+                ? "border-mint-ink bg-mint text-on-mint"
                 : "border-glass-line bg-glass text-muted hover:text-text",
             )}
           >

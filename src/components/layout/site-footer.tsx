@@ -6,7 +6,7 @@ export function SiteFooter() {
   return (
     <footer className="mx-auto flex max-w-site flex-wrap items-center justify-between gap-4 border-t border-glass-line px-5 pt-10 pb-12 text-sm text-subtle">
       <Link href="/" className="flex items-center gap-2.5 font-semibold text-text">
-        <Monogram className="w-[18px] text-mint" />
+        <Monogram className="w-[18px] text-mint-ink" />
         {site.name}
       </Link>
       <nav aria-label="Footer">

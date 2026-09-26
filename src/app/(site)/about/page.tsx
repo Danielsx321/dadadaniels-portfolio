@@ -26,7 +26,7 @@ export default function AboutPage() {
     <>
       <section className="mx-auto max-w-site px-5 pt-36 pb-24">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] border border-glass-line shadow-[0_40px_100px_rgb(0_0_0/0.5)]">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] border border-glass-line shadow-[0_40px_100px_--alpha(var(--color-shade)/50%)]">
             <Image
               src="/me/portrait.jpg"
               alt="Daniels, web developer based in Lagos"
@@ -67,7 +67,7 @@ export default function AboutPage() {
           {steps.map((s, i) => (
             <Reveal as="li" key={s.name} delay={i * 80}>
               <GlowCard className="h-full p-7">
-                <span className="font-serif text-2xl text-mint italic">{String(i + 1).padStart(2, "0")}</span>
+                <span className="font-serif text-2xl text-mint-ink italic">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="mt-3 text-xl font-semibold">{s.name}</h3>
                 <p className="mt-2 text-[15px] text-muted">{s.text}</p>
               </GlowCard>
@@ -83,10 +83,10 @@ export default function AboutPage() {
             <ul className="mt-8 space-y-5">
               {tools.map((t) => (
                 <li key={t.lane}>
-                  <p className="text-sm text-mint">{t.lane}</p>
+                  <p className="text-sm text-mint-ink">{t.lane}</p>
                   <ul className="mt-2 flex flex-wrap gap-2">
                     {t.items.map((item) => (
-                      <li key={item} className="rounded-full border border-glass-line bg-white/4 px-3 py-1.5 text-[13px]">
+                      <li key={item} className="rounded-full border border-glass-line bg-tint/4 px-3 py-1.5 text-[13px]">
                         {item}
                       </li>
                     ))}

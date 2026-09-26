@@ -6,7 +6,7 @@ import { Pill } from "@/components/ui/pill";
 export function CtaBlock() {
   return (
     <section className="mx-auto max-w-site px-5 pb-24">
-      <Reveal className="relative overflow-hidden rounded-[32px] border border-glass-line bg-[radial-gradient(700px_380px_at_50%_110%,rgb(75_255_165/0.28),transparent_70%),#0a0c0e] px-6 py-20 text-center md:py-24">
+      <Reveal className="relative overflow-hidden rounded-[32px] border border-glass-line bg-[radial-gradient(700px_380px_at_50%_110%,--alpha(var(--color-glow)/28%),transparent_70%),var(--color-surface-raised)] px-6 py-20 text-center md:py-24">
         <Pill>Available for new projects</Pill>
         <h2 className="mt-5 text-[clamp(40px,6.4vw,84px)] leading-[1] font-semibold tracking-[-0.045em]">
           Let&apos;s build what your

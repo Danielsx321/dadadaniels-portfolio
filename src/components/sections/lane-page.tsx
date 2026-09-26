@@ -19,7 +19,7 @@ export function LanePage({ slug }: { slug: LaneContent["slug"] }) {
       <section className="relative isolate overflow-hidden">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute top-[-20%] left-1/2 -z-10 h-[600px] w-[1000px] -translate-x-1/2 bg-[radial-gradient(closest-side,rgb(75_255_165/0.14),transparent)]"
+          className="pointer-events-none absolute top-[-20%] left-1/2 -z-10 h-[600px] w-[1000px] -translate-x-1/2 bg-[radial-gradient(closest-side,--alpha(var(--color-glow)/14%),transparent)]"
         />
         <div className="mx-auto max-w-[900px] px-5 pt-40 pb-20 text-center">
           <SectionHeading as="h1" eyebrow={lane.eyebrow} title={lane.headline} accent={lane.headlineAccent} intro={lane.intro} />
@@ -42,7 +42,7 @@ export function LanePage({ slug }: { slug: LaneContent["slug"] }) {
           {lane.services.map((s, i) => (
             <Reveal as="li" key={s.name} delay={(i % 3) * 80}>
               <GlowCard className="h-full p-7">
-                <span className="font-serif text-xl text-mint italic">{String(i + 1).padStart(2, "0")}</span>
+                <span className="font-serif text-xl text-mint-ink italic">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="mt-3 text-xl font-semibold tracking-[-0.02em]">{s.name}</h3>
                 <p className="mt-2 text-[15px] leading-relaxed text-muted">{s.text}</p>
               </GlowCard>
