@@ -18,7 +18,7 @@ export const mainNav = [
 
 /**
  * Projects shown in the hero carousel. Lane labels follow the confirmed roles:
- * SmartPatrol = accessibility work, PPTM = event tech only, SMG and Hilaritas = full builds.
+ * SmartPatrol = accessibility work, PPTM = event tech only, SMG, Hilaritas and Caitlin Goes Digital = full builds.
  */
 export const heroProjects = [
   { title: "SmartPatrol", lane: "Accessibility", image: "/work/smart-patrol.jpg" },
@@ -26,6 +26,7 @@ export const heroProjects = [
   { title: "Richard Saad", lane: "WordPress", image: "/work/richard-saad.jpg" },
   { title: "PPTM", lane: "Event Tech", image: "/work/pptm.jpg" },
   { title: "SMG Relief", lane: "WordPress", image: "/work/smg-wrn.jpg" },
+  { title: "Caitlin Goes Digital", lane: "WordPress", image: "/work/caitlin-goes-digital.jpg" },
   { title: "CPHnights", lane: "Event Tech", image: "/work/cphnights.jpg" },
   { title: "Hilaritas", lane: "WordPress", image: "/work/hilaritas-suites.jpg" },
   { title: "Balanced Book", lane: "Other", image: "/work/balanced-book.jpg" },

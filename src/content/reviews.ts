@@ -21,6 +21,17 @@ export type Review = {
 export const reviews: Review[] = [
   {
     quote:
+      "...it was clear from the beginning that he understood not just how to build the website, but how to make the different pieces work together from a user and business perspective... I finished the project feeling confident not only in the website itself, but in how to manage and build on it going forward.",
+    accent: "a user and business perspective",
+    name: "Caitlin O.",
+    initials: "CO",
+    project: "Creator site and digital download shop",
+    source: "Upwork",
+    date: "2026-09",
+    lanes: ["wordpress"],
+  },
+  {
+    quote:
       "His expertise in WordPress optimization is outstanding. He quickly identified the issues, implemented the right solutions, and helped my website meet all the technical requirements I needed... It's rare to find someone who combines technical excellence with such a smooth and enjoyable collaboration.",
     accent: "technical excellence",
     name: "Panagiotis N.",
