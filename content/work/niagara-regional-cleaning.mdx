@@ -1,0 +1,44 @@
+---
+title: "Niagara Regional Cleaning technical SEO"
+client: "Niagara Regional Cleaning"
+lane: "wordpress"
+tag: "Technical SEO"
+summary: "A 546-page commercial cleaning site with three duplicate page layers per city. Folded into one with 301s, service pages rebuilt, and nothing broke."
+role: "Technical SEO and speed work on an existing site (not the original build)"
+stack: ["WordPress", "Elementor", "WordPress.com", "Search Console"]
+liveUrl: "https://niagararegionalcleaning.ca"
+year: 2026
+featured: true
+order: 14
+metrics:
+  - label: "Homepage mobile PageSpeed"
+    value: "54 to 82"
+    source: "PageSpeed Insights, homepage, median of 3 runs before and after, Sep 2026"
+  - label: "Service pages desktop PageSpeed"
+    value: "59 to 95 and 99"
+    source: "PageSpeed Insights, five rebuilt service pages against one page still on the old build, Sep 2026"
+  - label: "Pages taken out of Google"
+    value: "37"
+    source: "13 retired service pages and 24 advert-style posts, noindex plus Search Console removals, Sep 2026"
+  - label: "Stylesheets loaded"
+    value: "49 to 5"
+    source: "Network count on the homepage before and after, Sep 2026"
+thumb: "/work/niagara-regional-cleaning.jpg"
+hero: "/work/niagara-regional-cleaning-desktop.jpg"
+---
+
+## The problem
+
+Niagara Regional Cleaning is a commercial cleaning company serving offices, clinics, gyms, restaurants and car dealerships across the Niagara Region in Ontario. The WordPress site had grown to 546 URLs, with three near-duplicate page layers for every city competing against each other in Google, a homepage that said commercial only while residential city pages still existed, retired service pages and old advert-style posts still indexed, and a header that jumped 132 pixels on load.
+
+## What I did
+
+- Crawled every sitemap URL and mapped the three page layers per city, then consolidated them with 301 redirects that carry each old page's Search Console history into the commercial city page that stays.
+- Took 13 retired service pages and 24 advert-style posts out of Google with noindex and Search Console removals, and removed 6 unused plugins after a site-wide usage scan.
+- Rebuilt the homepage and the five commercial service pages (medical office, office, restaurant, gym, auto dealership) from Elementor templates to native blocks using the owner's own copy: one H1 each, commercial-only focus, his job photos cut from 80 MB to 2.8 MB WebP, Service schema carried over.
+- Fixed the header layout shift caused by a reviews badge, cut the stylesheets loading from 49 to 5, and cleared the "images forced to wrong size" warning with real srcset and sizes through the image CDN.
+- Restructured the menu around commercial services and city pages, then ran a second crawl of all 546 URLs to confirm nothing had broken.
+
+## Result
+
+Homepage mobile PageSpeed went from **54 to 82** (median of three runs). The five rebuilt service pages score **78 to 87 on mobile and 95 to 99 on desktop**, against 59 and 60 for a page still on the old build, with an SEO score of 100 on all of them. The owner closed the contract with a 5-star review and said he is freeing budget to bring the work on as ongoing maintenance.
