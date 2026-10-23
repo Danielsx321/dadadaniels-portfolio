@@ -20,6 +20,7 @@ Positioning: WordPress Developer is the core. Full Stack Developer and No-Code D
 - **Confirmed roles:** SMG = full build. SmartPatrol = accessibility work only. PPTM = everything event related only. Tag and describe them that way.
 - **Prices shown ("from"):** WordPress $250, Full Stack $1,000, No-Code $1,000, Event Tech $800.
 - **No email address anywhere on the site.** Contact form and Cal.com only.
+- **Analytics is cookieless only:** Umami Cloud in the root layout, on only when `NEXT_PUBLIC_UMAMI_ID` is set, counting `dadadaniels.vercel.app` only. Never add a tracker that needs a consent banner (no GA4). Lane FAQs live in `faq` in `src/content/lanes.ts` and follow the no-unbacked-claims rule.
 
 ## Adding a case study
 

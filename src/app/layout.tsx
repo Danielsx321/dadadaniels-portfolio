@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Instrument_Serif, Inter_Tight } from "next/font/google";
+import Script from "next/script";
 import { NavProgress } from "@/components/layout/nav-progress";
 import { ThemeScript } from "@/components/theme/theme-script";
 import { site } from "@/content/site";
@@ -39,6 +40,7 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const umamiId = process.env.NEXT_PUBLIC_UMAMI_ID;
   return (
     <html lang="en" className={`${interTight.variable} ${instrumentSerif.variable}`} suppressHydrationWarning>
       <head>
@@ -53,6 +55,16 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </a>
         <NavProgress />
         {children}
+        {umamiId && (
+          // Cookieless visit counts (no consent banner needed). Reads utm_* tags from the URL.
+          // data-domains keeps previews and local runs out of the numbers.
+          <Script
+            src="https://cloud.umami.is/script.js"
+            data-website-id={umamiId}
+            data-domains="dadadaniels.vercel.app"
+            strategy="lazyOnload"
+          />
+        )}
       </body>
     </html>
   );

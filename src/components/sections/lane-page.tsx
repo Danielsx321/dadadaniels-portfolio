@@ -7,6 +7,7 @@ import { getByLane } from "@/lib/content";
 import { reviewsFor } from "@/content/reviews";
 import { CtaBlock } from "./cta-block";
 import { EventSpotlight } from "./event-spotlight";
+import { FaqBlock } from "./faq-block";
 import { ReviewBlock } from "./review-block";
 import { SectionHeading } from "./section-heading";
 
@@ -67,6 +68,8 @@ export function LanePage({ slug }: { slug: LaneContent["slug"] }) {
       )}
 
       <ReviewBlock reviews={reviewsFor(slug)} />
+
+      {lane.faq?.length ? <FaqBlock items={lane.faq} /> : null}
 
       <CtaBlock />
     </>
