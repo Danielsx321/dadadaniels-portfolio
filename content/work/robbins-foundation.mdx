@@ -1,0 +1,44 @@
+---
+title: "Robbins Foundation Systems"
+client: "Robbins Foundation Systems"
+lane: "wordpress"
+tag: "Speed + security"
+summary: "A foundation repair contractor's Google Ads landing pages, sped up after a malware clean without losing a single click ID on the way to the tracking."
+role: "Speed, tracking-safe redirects and post-malware hardening on an existing site (not the original build)"
+stack: ["WordPress", "Elementor", "Flywheel", "Cloudflare", "Wordfence", "Google Tag Manager"]
+liveUrl: "https://robbinsfoundationsystems.com"
+year: 2026
+featured: false
+order: 9
+metrics:
+  - label: "Drainage ad page, main content on a phone"
+    value: "13.4 s to 4.5 s"
+    source: "PageSpeed Insights mobile, before and after go-live, Oct 2026"
+  - label: "Server response on a new ad click"
+    value: "0.53 to 0.93 s down to 0.18 to 0.42 s"
+    source: "PageSpeed Insights mobile across the 8 ad landing pages, before and after, Oct 2026"
+  - label: "Homepage HTML"
+    value: "689 KB to 422 KB"
+    source: "Page source size before and after, Oct 2026"
+  - label: "URL variants that kept gclid, msclkid and utm"
+    value: "8 of 8"
+    source: "Tested by the client's ads manager after the redirects moved to Cloudflare, Oct 2026"
+thumb: "/work/robbins-foundation.jpg"
+hero: "/work/robbins-foundation-desktop.jpg"
+---
+
+## The problem
+
+Robbins Foundation Systems runs Google Ads to its site, which sits on Flywheel behind Cloudflare and had just been cleaned of malware. The ad landing pages were slow on phones, an AI chatbot showed an API key in the page source, and any redirect fix risked stripping the click IDs the ads team relies on.
+
+## What I did
+
+- Swapped the chatbot for a server-side version with the key held in a Cloudflare Worker, signed off by the ads manager, with a lead event for Tag Manager.
+- Hardened Wordfence so it reads the real visitor IP behind Cloudflare, and removed leftovers from the infection: a planted cache drop-in, stray PHP files, an abandoned file manager and a fake plugin path hiding in saved Elementor widgets.
+- Proved the host strips gclid and utm before WordPress sees them, so moved the http, www and trailing slash redirects to Cloudflare instead.
+- After a 48-hour notice and written sign-off, staging first: one phone layout on all 8 ad pages, phone-sized hero images preloaded (197 KB to 57 KB), Elementor CSS moved to cached files, unused scripts removed, tracking untouched.
+- During a host outage, proved it was server-side, escalated with the evidence, and checked all 8 ad pages with tracking intact once it came back.
+
+## Result
+
+Main content on the four slowest ad pages now shows **4 to 9 seconds sooner on a phone**, server response on a new ad click roughly halved, and every click ID still reaches the tracking.
