@@ -1,0 +1,45 @@
+---
+title: "Saracens Solicitors speed fix"
+client: "Saracens Solicitors"
+lane: "wordpress"
+tag: "Speed"
+summary: "Search Console flagged 237 mobile pages of a London law firm as slow. A loading screen, a faded headline and oversized images were holding them back."
+role: "Speed and Core Web Vitals work on an existing site (not the original build)"
+stack: ["WordPress", "Elementor Pro", "Crocoblock", "WP Rocket", "Kinsta", "Gravity Forms"]
+liveUrl: "https://saracenssolicitors.co.uk"
+year: 2026
+featured: true
+order: 8
+metrics:
+  - label: "Homepage mobile PageSpeed"
+    value: "36 to 53"
+    source: "PageSpeed Insights, median of 3 runs before and after the first pass, 21 Oct 2026"
+  - label: "Blog post main content on a phone"
+    value: "14 s to 5.2 s"
+    source: "PageSpeed Insights, blog post, before and after the second pass, Oct 2026"
+  - label: "Blog post blocking time"
+    value: "2,560 ms to 194 ms"
+    source: "PageSpeed Insights, median of 3 runs before and after the first pass, 21 Oct 2026"
+  - label: "Plugins"
+    value: "37 to 28"
+    source: "Plugin count before and after the cleanup, staging first, Oct 2026"
+thumb: "/work/saracens-solicitors.jpg"
+hero: "/work/saracens-solicitors-desktop.jpg"
+---
+
+## The problem
+
+Saracens Solicitors is a full-service law firm in London on Elementor Pro and Crocoblock, hosted on Kinsta. Search Console flagged 237 mobile pages for slow main content, 177 of them blog posts, and the enquiry popup was failing on its first send.
+
+## What I did
+
+- Took a full Kinsta backup, then found a sitewide loading screen that held every page until it had fully loaded, and switched it off.
+- Removed the fade-in on the homepage headline, which was the exact element Google was timing.
+- Gave the blog hero a phone and tablet image of 1536 px instead of 2560 px, cutting it from 181 KB to 79 KB.
+- Set up WP Rocket minify, defer and unused CSS removal, and raised the Kinsta page cache from 1 hour to 24 after finding cache misses took up to 7 seconds at the server.
+- Traced the popup failure to the reCAPTCHA add-on never starting inside the Elementor popup, and fixed it with a small sitewide script.
+- Removed 9 unused plugins and put Delay JavaScript live with a popup-safe exclusion list, both tested on staging first.
+
+## Result
+
+Blog posts went from **50 to 70 on phone and 55 to 78 on desktop** in the second pass, with main content on a phone down from 14 seconds to 5.2. The client released payment, called it great work, and Search Console has started validating the fix.

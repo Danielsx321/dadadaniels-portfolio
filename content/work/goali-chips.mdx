@@ -1,0 +1,42 @@
+---
+title: "Goali's Gourmet store recovery"
+client: "Goali's Gourmet"
+lane: "wordpress"
+tag: "WooCommerce fix"
+summary: "No US address could check out, and an old break-in had left over 10,000 spam posts in the sitemap. Checkout fixed, spam gone, store tested end to end."
+role: "Checkout fix, security cleanup and store repairs on an existing site (not the original build)"
+stack: ["WordPress", "WooCommerce", "Elementor", "Rank Math"]
+liveUrl: "https://goalichips.com"
+year: 2026
+featured: false
+order: 21
+metrics:
+  - label: "US checkout"
+    value: "Blocked to working"
+    source: "Store API cart tests on several US addresses before, checkout tests with one-bag and three-bag carts after, Oct 2026"
+  - label: "Spam posts live"
+    value: "10,614 to 0"
+    source: "Post count before and after the cleanup, Oct 2026"
+  - label: "Unused or vulnerable plugins removed"
+    value: "11"
+    source: "Plugin list before and after, Oct 2026"
+thumb: "/work/goali-chips.jpg"
+hero: "/work/goali-chips-desktop.jpg"
+---
+
+## The problem
+
+Goali's Gourmet sells handmade dog chips. No US address was offered a shipping option, so no one could check out, and the last shipped order was months old. A security scan also showed critical findings left over from a 2023 break-in.
+
+## What I did
+
+- Proved the checkout fault from outside with cart tests on several US addresses, then found the cause: shipping came only from two outdated live-rate plugins with no fallback. Set up a US flat rate with free shipping over a threshold and tested checkout.
+- Put the owner's real product photos first on the chicken listings, converted and compressed.
+- Removed the 10,614 spam posts (restoring the one real article caught up with them), the planted files and old leftovers, regenerated security keys and reset admin access.
+- Removed 11 unused or vulnerable plugins after rebuilding the homepage banner and product grid in free Elementor, and fixed a missing product page header and blank phone menu icons.
+- Opened the product pages to Google with a product sitemap, after finding every product set to noindex.
+- Retested pages, cart, shipping and checkout logged out on desktop and phone.
+
+## Result
+
+**US customers can check out again**, the spam is gone from the site and the sitemap, and the theme's daily fatal error stopped once the cleanup was done.

@@ -1,0 +1,41 @@
+---
+title: "Core Wellness Institute"
+client: "Core Wellness Institute"
+lane: "wordpress"
+tag: "Recovery + migration"
+summary: "A membership site for about 1,100 members: one site brought back after seven weeks offline, the main site moved off an abandoned theme with zero page differences."
+role: "Server recovery and theme migration on an existing site (not the original build)"
+stack: ["WordPress", "WishList Member", "Kadence", "nginx", "Cloudflare", "Ionos VPS"]
+liveUrl: "https://corewellnessinstitute.com"
+year: 2026
+featured: false
+order: 19
+metrics:
+  - label: "Published pages changed by the theme move"
+    value: "0 of 456"
+    source: "Every published page compared old against new on staging and again on live, Oct 2026"
+  - label: "Member levels tested"
+    value: "7 plus admin"
+    source: "Access checked on both themes, Oct 2026"
+  - label: "Site offline before the fix"
+    value: "7 weeks"
+    source: "Owner's report and server records, restored Oct 2026"
+thumb: "/work/core-wellness.jpg"
+hero: "/work/core-wellness-desktop.jpg"
+---
+
+## The problem
+
+Core Wellness Institute runs health education memberships for about 1,100 members on WishList Member, across three WordPress sites on one VPS. A hosting move had left one site offline for seven weeks, and the main site was stuck on an abandoned theme.
+
+## What I did
+
+- Brought the offline site back: files and database moved to the VPS, nginx and PHP set up, self-renewing SSL, Cloudflare DNS switched, and the main site's dead Join link working again.
+- Moved the main site to a Kadence child theme, staging first: all 11 old page layouts mapped, the 26 header-free sales pages kept as they were, and menus, sidebars and member messages recreated.
+- Put a member login at the top of the phone layout after the owner's review.
+- Compared all 456 published pages old against new (status, text, images, video, forms, errors) on staging and again on live, and tested member access across every level.
+- Blocked backup files that could be downloaded from two of the sites.
+
+## Result
+
+**Zero differences across 456 pages** after the switch, and member access matched on both themes. The owner's next request is the same move for a second site.
