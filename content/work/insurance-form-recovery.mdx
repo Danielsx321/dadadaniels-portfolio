@@ -1,0 +1,40 @@
+---
+title: "Insurance form recovery"
+client: "Texas insurance agency"
+lane: "wordpress"
+tag: "Troubleshooting"
+summary: "Applicants saw a success message, but the office never got their forms. Recovered every missed entry and got all four forms delivering through Microsoft 365."
+role: "Diagnosis, data recovery and email repair on an existing site (not the original build)"
+stack: ["WordPress", "Gravity Forms", "Gravity PDF", "WP Mail SMTP Pro", "Microsoft 365", "GoDaddy"]
+year: 2026
+order: 46
+metrics:
+  - label: "Form submissions audited"
+    value: "248"
+    source: "Gravity Forms entries across all four forms, exported from a full backup, Oct 2026"
+  - label: "Never-received entries recovered"
+    value: "101"
+    source: "Entries that never left the server or were refused after the Microsoft 365 move, Oct 2026"
+  - label: "Test sends through Microsoft 365"
+    value: "5 of 5"
+    source: "WP Mail SMTP Pro email log after the fix, all four forms, 26 Oct 2026"
+thumb: "/work/insurance-form-recovery.jpg"
+---
+
+## The problem
+
+An insurance agency in Texas runs four Gravity Forms on WordPress: a contact form and three insurance applications. Applicants saw a success message, but the office stopped getting their emails, and one applicant who never heard back raised the alarm. The agency had recently moved its email to Microsoft 365.
+
+## What I did
+
+- Took a full backup before touching anything, then exported all 248 saved submissions and made a PDF of every one of the 22 applications with Gravity PDF. No entry or field was deleted.
+- Traced two separate faults. The host's built-in PHP mail had been failing on about a third of form emails since late 2025, and after the move to Microsoft 365 every remaining email was refused, because the domain's SPF and DMARC policy only allows Microsoft to send.
+- Built a never-received list of 101 entries with each person's details, so the office could call them back, plus a plain-English recovery report.
+- Moved site mail to the Microsoft 365 mailer in WP Mail SMTP Pro, sending from the shared office mailbox, without loosening SPF or DMARC. Every form now goes to four office inboxes with the applicant as Reply-To, and the email log and failure alerts are on.
+- Tested all four forms through the new connection and checked each send in the email log.
+
+## Result
+
+**101 missed entries recovered** and handed back with contact details, and **all four forms delivering** through Microsoft 365, 5 of 5 test sends confirmed. The owner said it found the real cause and kept the domain's email security intact.
+
+The site holds applicants' personal data, so there are no screenshots of client pages.
